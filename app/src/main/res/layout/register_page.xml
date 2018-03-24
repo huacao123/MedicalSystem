@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/registerPage_topHeight"
+        android:background="@color/mainPage_top_color">
+
+        <TextView
+            android:id="@+id/registerPage_cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/uploadRecord_topBar_patientImage_toRight"
+            android:drawableLeft="@mipmap/goback_image"
+            android:drawablePadding="@dimen/mineSetting_cancelButton_dis"
+            android:gravity="center_vertical"
+            android:text="@string/uploadRecord_goBackText"
+            android:textColor="@color/uploadRecord_topTextColor"
+            android:textSize="@dimen/uploadRecord_topBar_backButton_textSize" />
+
+        <TextView
+            android:id="@+id/registerPage_topText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/registerPage_topText"
+            android:textColor="@color/uploadRecord_topTextColor"
+            android:textSize="@dimen/uploadRecord_topBar_patientName_textSize" />
+    </RelativeLayout>
+
+    <com.wendy.medicalsystem.tools.MyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/registerPage_topHeight"
+                android:layout_marginTop="@dimen/registerPage_toTop"
+                android:background="@color/registerPage_barBackground"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/registerPage_toLeft"
+                    android:text="@string/registerPage_userName"
+                    android:textColor="@color/registerPage_editTextColor"
+                    android:textSize="@dimen/registerPage_editTextSize" />
+
+                <EditText
+                    android:id="@+id/registerPage_userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/registerPage_toLeft"
+                    android:background="@null"
+                    android:hint="@string/registerPage_userNameHint"
+                    android:imeOptions="actionNext"
+                    android:maxLength="@integer/registerPage_userNameMaxLength"
+                    android:singleLine="true"
+                    android:textColor="@color/registerPage_editTextColor"
+                    android:textColorHint="@color/registerPage_editTextHintColor"
+                    android:textSize="@dimen/registerPage_editTextSize" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/filePage_tabHost_below_gap"
+                android:background="@color/filePage_tabHost_gap_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/registerPage_topHeight"
+                android:background="@color/registerPage_barBackground"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/registerPage_toLeft"
+                    android:text="@string/registerPage_userCategory"
+                    android:textColor="@color/registerPage_editTextColor"
+                    android:textSize="@dimen/registerPage_editTextSize" />
+
+                <LinearLayout
+                    android:id="@+id/registerPage_userSexMan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/registerPage_toLeft"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/registerPage_doctor"
+                        android:textColor="@color/registerPage_editTextColor"
+                        android:textSize="@dimen/registerPage_editTextSize" />
+
+                    <TextView
+                        android:id="@+id/registerPage_userSexManImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/r_man_before"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/registerPage_userSexWoman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/registerPage_toLeft"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/registerPage_patient"
+                        android:textColor="@color/registerPage_editTextColor"
+                        android:textSize="@dimen/registerPage_editTextSize" />
+
+                    <TextView
+                        android:id="@+id/registerPage_userSexWomanImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/r_woman_before"
+                        android:gravity="center" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/filePage_tabHost_below_gap"
+                android:background="@color/filePage_tabHost_gap_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/registerPage_topHeight"
+                android:background="@color/registerPage_barBackground"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/registerPage_toLeft"
+                    android:text="所在社区:"
+                    android:layout_gravity="center"
+                    android:textColor="@color/registerPage_editTextColor"
+                    android:textSize="@dimen/registerPage_editTextSize" />
+
+                <Spinner
+                    android:id="@+id/spin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/filePage_tabHost_below_gap"
+                android:background="@color/filePage_tabHost_gap_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/registerPage_topHeight"
+                android:background="@color/registerPage_barBackground"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/registerPage_toLeft"
+                    android:text="@string/registerPage_userPassword"
+                    android:textColor="@color/registerPage_editTextColor"
+                    android:textSize="@dimen/registerPage_editTextSize" />
+
+                <EditText
+                    android:id="@+id/registerPage_userPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/registerPage_toLeft"
+                    android:background="@null"
+                    android:hint="@string/registerPage_userPasswordHint"
+                    android:imeOptions="actionNext"
+                    android:maxLength="@integer/registerPage_userPasswordMaxLength"
+                    android:password="true"
+                    android:singleLine="true"
+                    android:textColor="@color/registerPage_editTextColor"
+                    android:textColorHint="@color/registerPage_editTextHintColor"
+                    android:textSize="@dimen/registerPage_editTextSize" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/filePage_tabHost_below_gap"
+                android:background="@color/filePage_tabHost_gap_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/registerPage_topHeight"
+                android:background="@color/registerPage_barBackground"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/registerPage_toLeft"
+                    android:text="@string/registerPage_userConfirmPassword"
+                    android:textColor="@color/registerPage_editTextColor"
+                    android:textSize="@dimen/registerPage_editTextSize" />
+
+                <EditText
+                    android:id="@+id/registerPage_userConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/registerPage_toLeft"
+                    android:background="@null"
+                    android:hint="@string/registerPage_userConfirmPasswordHint"
+                    android:imeOptions="actionDone"
+                    android:maxLength="@integer/registerPage_userPasswordMaxLength"
+                    android:password="true"
+                    android:singleLine="true"
+                    android:textColor="@color/registerPage_editTextColor"
+                    android:textColorHint="@color/registerPage_editTextHintColor"
+                    android:textSize="@dimen/registerPage_editTextSize" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/registerPage_registerButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/registerPage_topHeight"
+                android:layout_marginTop="@dimen/registerPage_toLeft"
+                android:background="@color/mainPage_top_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/registerPage_buttonText"
+                    android:textColor="@color/uploadRecord_topTextColor"
+                    android:textSize="@dimen/uploadRecord_topBar_patientName_textSize" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </com.wendy.medicalsystem.tools.MyScrollView>
+</LinearLayout>
