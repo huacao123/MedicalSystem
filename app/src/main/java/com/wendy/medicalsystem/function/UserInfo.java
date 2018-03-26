@@ -16,6 +16,11 @@ public class UserInfo implements Serializable {
     public String doctor_job;
     public String doctor_department;
     public String doctor_telephone;
+    public String doctor_Category;
+
+   /* public static UserInfo getUser() {
+        return user;
+    }*/
 
     public static void setUserInfo(UserInfo u) {
         UserInfo.user = u;
@@ -30,6 +35,18 @@ public class UserInfo implements Serializable {
             return true;
         }
         return false;
+    }
+
+    public static void setUser(UserInfo user) {
+        UserInfo.user = user;
+    }
+
+    public String getDoctor_Category() {
+        return doctor_Category;
+    }
+
+    public void setDoctor_Category(String doctor_Category) {
+        this.doctor_Category = doctor_Category;
     }
 
     public Integer getDoctor_id() {

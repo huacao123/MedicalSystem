@@ -3,6 +3,7 @@ package com.wendy.medicalsystem.medicalapplicition;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -31,13 +32,14 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     //几个代表页面的常量
     public static final int PAGE_ONE = 0;
     public static final int PAGE_TWO = 1;
-    public static final int PAGE_THREE = 2;
-    public static final int PAGE_FOUR = 3;
+    /*public static final int PAGE_THREE = 2;*/
+    public static final int PAGE_FOUR = 2;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         mAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
         bindViews();
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         rg_tab_bar = (RadioGroup) findViewById(R.id.rg_tab_bar);
         rb_channel = (RadioButton) findViewById(R.id.rb_channel);
         rb_message = (RadioButton) findViewById(R.id.rb_message);
-        rb_better = (RadioButton) findViewById(R.id.rb_better);
+        //rb_better = (RadioButton) findViewById(R.id.rb_better);
         rb_setting = (RadioButton) findViewById(R.id.rb_setting);
         rg_tab_bar.setOnCheckedChangeListener(this);
 
@@ -68,9 +70,9 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             case R.id.rb_message:
                 vpager.setCurrentItem(PAGE_TWO);
                 break;
-            case R.id.rb_better:
+            /*case R.id.rb_better:
                 vpager.setCurrentItem(PAGE_THREE);
-                break;
+                break;*/
             case R.id.rb_setting:
                 vpager.setCurrentItem(PAGE_FOUR);
                 break;
@@ -98,9 +100,9 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 case PAGE_TWO:
                     rb_message.setChecked(true);
                     break;
-                case PAGE_THREE:
+              /*  case PAGE_THREE:
                     rb_better.setChecked(true);
-                    break;
+                    break;*/
                 case PAGE_FOUR:
                     rb_setting.setChecked(true);
                     break;

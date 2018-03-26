@@ -14,9 +14,9 @@ import com.wendy.medicalsystem.R;
 /**
  * Created by Jay on 2015/8/28 0028.
  */
-public class MyFragment4 extends Fragment {
+public class DataViewFragment extends Fragment {
 
-    public MyFragment4() {
+    public DataViewFragment() {
     }
 
     @Override

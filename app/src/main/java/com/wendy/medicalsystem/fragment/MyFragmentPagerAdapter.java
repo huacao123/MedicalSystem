@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
+import com.wendy.medicalsystem.function.UserInfo;
 import com.wendy.medicalsystem.medicalapplicition.MainActivity;
 
 
@@ -13,21 +14,20 @@ import com.wendy.medicalsystem.medicalapplicition.MainActivity;
  */
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private final int PAGER_COUNT = 4;
+    private final int PAGER_COUNT = 3;
     private HealthInformationFragment myFragment1 = null;
     private DataRecordFragment myFragment2 = null;
-    private MyFragment3 myFragment3 = null;
-    private MyFragment4 myFragment4 = null;
+    private SettingFragment myFragment3 = null;
+    private DataViewFragment myFragment4 = null;
 
 
     public MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
         myFragment1 = new HealthInformationFragment();
         myFragment2 = new DataRecordFragment();
-        myFragment3 = new MyFragment3();
-        myFragment4 = new MyFragment4();
+        myFragment3 = new SettingFragment();
+        myFragment4 = new DataViewFragment();
     }
-
 
     @Override
     public int getCount() {
@@ -53,14 +53,18 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
                 fragment = myFragment1;
                 break;
             case MainActivity.PAGE_TWO:
-                fragment = myFragment2;
-                break;
-            case MainActivity.PAGE_THREE:
-                fragment = myFragment3;
+                if(UserInfo.user.doctor_Category.equals("医生")){
+                    fragment = myFragment2;
+                }else {
+                    fragment = myFragment4;
+                }
                 break;
             case MainActivity.PAGE_FOUR:
-                fragment = myFragment4;
+                fragment = myFragment3;
                 break;
+          /*  case MainActivity.PAGE_FOUR:
+                fragment = myFragment4;
+                break;*/
         }
         return fragment;
     }
