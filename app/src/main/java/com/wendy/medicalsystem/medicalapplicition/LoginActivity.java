@@ -168,7 +168,8 @@ public class LoginActivity extends Activity {
                     }
                     Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_SHORT).show();
                     userInfo = new UserInfo();
-                    userInfo.setDoctor_id(1);
+                    //userInfo.setDoctor_id(1);
+                    userInfo.setDoctor_name(user.getUsername());
                     userInfo.setDoctor_Category(user.getCategory());
                     UserInfo.setUserInfo(userInfo);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);

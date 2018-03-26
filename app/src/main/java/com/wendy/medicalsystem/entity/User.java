@@ -9,7 +9,7 @@ import cn.bmob.v3.BmobUser;
 
 public class User extends BmobUser{
 
-    private Boolean sex;
+    private String sex;
     private String nick;
     private Integer age;
     private String category;
@@ -18,11 +18,11 @@ public class User extends BmobUser{
     private String telephone;
     private String birthday;
 
-    public Boolean getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Boolean sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 

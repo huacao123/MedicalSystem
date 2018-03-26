@@ -119,8 +119,7 @@ public class MineInformation extends Activity implements View.OnClickListener {
     }
 
     private void initData() {
-
-        User user = BmobUser.getCurrentUser(User.class);
+        /*User user = BmobUser.getCurrentUser(User.class);
         BmobQuery<User> query = new BmobQuery<>();
         query.getObject(user.getObjectId(), new QueryListener<User>() {
             @Override
@@ -133,16 +132,15 @@ public class MineInformation extends Activity implements View.OnClickListener {
                     setTextFunction(userTelephone, user.getTelephone());
                 }
             }
-        });
-/*      if (UserInfo.user.getDoctor_url() != null) {
+        });*/
+      if (UserInfo.user.getDoctor_url() != null) {
             userPhoto.setImageUrl(UserInfo.user.getDoctor_url(), 2);
         }
         setTextFunction(userName, UserInfo.user.getDoctor_name());
         setTextFunction(userSex, UserInfo.user.getDoctor_url());
         setTextFunction(userBirthday, UserInfo.user.getDoctor_birthday());
-        setTextFunction(userDepartment, UserInfo.user.getDoctor_department());
-        setTextFunction(userJob, UserInfo.user.getDoctor_job());
-        setTextFunction(userTelephone, UserInfo.user.getDoctor_telephone());*/
+        setTextFunction(userCategory, UserInfo.user.getDoctor_Category());
+        setTextFunction(userTelephone, UserInfo.user.getDoctor_telephone());
     }
 
     @Override

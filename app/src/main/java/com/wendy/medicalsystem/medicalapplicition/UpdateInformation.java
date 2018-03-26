@@ -142,13 +142,13 @@ public class UpdateInformation extends Activity {
     }
 
     private void initViewForSex() {
-        if (UserInfo.user.getDoctor_url() != null) {
-            if (UserInfo.user.getDoctor_url().equals("doctor")) {
-                gender = "doctor";
+        if (UserInfo.user.getDoctor_sex() != null) {
+            if (UserInfo.user.getDoctor_sex().equals("男")) {
+                gender = "男";
                 updateSexMan.setBackground(getResources().getDrawable(R.mipmap.r_man_after));
             }
-            if (UserInfo.user.getDoctor_url().equals("sick")) {
-                gender = "sick";
+            if (UserInfo.user.getDoctor_sex().equals("女")) {
+                gender = "女";
                 updateSexWoman.setBackground(getResources().getDrawable(R.mipmap.r_woman_after));
             }
         }
@@ -157,7 +157,7 @@ public class UpdateInformation extends Activity {
             public void onClick(View v) {
                 updateSexMan.setBackground(getResources().getDrawable(R.mipmap.r_man_after));
                 updateSexWoman.setBackground(getResources().getDrawable(R.mipmap.r_woman_before));
-                gender = "doctor";
+                gender = "男";
             }
         });
 
@@ -166,7 +166,7 @@ public class UpdateInformation extends Activity {
             public void onClick(View v) {
                 updateSexMan.setBackground(getResources().getDrawable(R.mipmap.r_man_before));
                 updateSexWoman.setBackground(getResources().getDrawable(R.mipmap.r_woman_after));
-                gender = "sick";
+                gender = "女";
             }
         });
     }
@@ -201,11 +201,13 @@ public class UpdateInformation extends Activity {
                 break;*/
             case "updateSex":
                 if (gender == null) {
-                    Toast.makeText(this, "请选择类别！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "请选择性别！", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                if ((UserInfo.user.getDoctor_url() == null || !(UserInfo.user.getDoctor_url().equals(gender)))) {
-                    updatePersonData("doctor_url", gender);
+                if ((UserInfo.user.getDoctor_sex() == null || !(UserInfo.user.getDoctor_sex().equals(gender)))) {
+                    user.setSex(gender);
+                    user.update();
+                    updatePersonData("doctor_sex", gender);
 
                 }
                 break;

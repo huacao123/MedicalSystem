@@ -64,13 +64,12 @@ public class AddVerdanaActivity extends Activity {
         query.findObjects(new FindListener<BloodGlucoseValue>() {
             @Override
             public void done(List<BloodGlucoseValue> list, BmobException e) {
-                myDataAdapter = new MyDataAdapter(AddVerdanaActivity.this,list);
-                lv_myDataList.setAdapter(myDataAdapter);
+                if (e == null){
+                    myDataAdapter = new MyDataAdapter(AddVerdanaActivity.this,list);
+                    lv_myDataList.setAdapter(myDataAdapter);
+                }
             }
         });
-
-
-
     }
 
 }

@@ -1,18 +1,18 @@
 package com.wendy.medicalsystem.entity;
 
-import com.wendy.medicalsystem.function.UserInfo;
 
-import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.BmobObject;
+
 
 /**
  * Created by huacao on 2018/3/25.
  */
 
-public class BloodGlucoseValue extends BmobUser {
+public class BloodGlucoseValue extends BmobObject {
 
     private User user;
     private String timeSelect;
-    private String boldGlucoseLevelValue;
+    private String bGlucoseLevelValue;
     private int year ;
     private int mouth;
     private int day;
@@ -33,12 +33,12 @@ public class BloodGlucoseValue extends BmobUser {
         this.timeSelect = timeSelect;
     }
 
-    public String getBoldGlucoseLevelValue() {
-        return boldGlucoseLevelValue;
+    public String getBGlucoseLevelValue() {
+        return bGlucoseLevelValue;
     }
 
-    public void setBoldGlucoseLevelValue(String boldGlucoseLevelValue) {
-        this.boldGlucoseLevelValue = boldGlucoseLevelValue;
+    public void setBGlucoseLevelValue(String boldGlucoseLevelValue) {
+        this.bGlucoseLevelValue = boldGlucoseLevelValue;
     }
 
     public int getYear() {

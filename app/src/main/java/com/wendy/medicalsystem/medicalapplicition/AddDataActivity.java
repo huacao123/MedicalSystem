@@ -99,7 +99,7 @@ public class AddDataActivity extends AppCompatActivity implements View.OnClickLi
                 bloodGlucoseValue.setYear(data[0]);
                 bloodGlucoseValue.setMouth(data[1]);
                 bloodGlucoseValue.setDay(data[2]);
-                bloodGlucoseValue.setBoldGlucoseLevelValue(
+                bloodGlucoseValue.setBGlucoseLevelValue(
                         et_boldGlucoseLevel.getText().toString());
                 bloodGlucoseValue.setTimeSelect(timeSelect);
                 bloodGlucoseValue.save(new SaveListener<String>() {

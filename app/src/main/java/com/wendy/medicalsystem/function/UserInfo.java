@@ -17,6 +17,7 @@ public class UserInfo implements Serializable {
     public String doctor_department;
     public String doctor_telephone;
     public String doctor_Category;
+    public String doctor_sex;
 
    /* public static UserInfo getUser() {
         return user;
@@ -123,6 +124,14 @@ public class UserInfo implements Serializable {
 
     public void setDoctor_telephone(String doctor_telephone) {
         this.doctor_telephone = doctor_telephone;
+    }
+
+    public String getDoctor_sex() {
+        return doctor_sex;
+    }
+
+    public void setDoctor_sex(String doctor_sex) {
+        this.doctor_sex = doctor_sex;
     }
 
     @Override

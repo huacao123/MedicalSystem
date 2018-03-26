@@ -54,9 +54,9 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
                 break;
             case MainActivity.PAGE_TWO:
                 if(UserInfo.user.doctor_Category.equals("医生")){
-                    fragment = myFragment2;
-                }else {
                     fragment = myFragment4;
+                }else {
+                    fragment = myFragment2;
                 }
                 break;
             case MainActivity.PAGE_FOUR:
