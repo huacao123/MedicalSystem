@@ -15,10 +15,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wendy.medicalsystem.R;
+import com.wendy.medicalsystem.entity.User;
 import com.wendy.medicalsystem.function.UsedTools;
 import com.wendy.medicalsystem.function.UserInfo;
 
 import java.util.Calendar;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
 
 /**
  * Created by sjaiwl on 15/4/3.
@@ -42,7 +48,6 @@ public class UpdateInformation extends Activity {
     private String birthday = "";
     private String successResponse = null;
 
-    private long personId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,16 +94,16 @@ public class UpdateInformation extends Activity {
     private void getUpdateType() {
         updateType = getIntent().getStringExtra("index");
         switch (updateType) {
-            case "updateName":
+           /* case "updateName":
                 topText.setText("姓名");
                 updateName.setVisibility(View.VISIBLE);
                 if (UserInfo.user.getDoctor_name() != null) {
                     inputText.setText(UserInfo.user.getDoctor_name());
                     inputText.requestFocus(UserInfo.user.getDoctor_name().length());
                 }
-                break;
+                break;*/
             case "updateSex":
-                topText.setText("类别");
+                topText.setText("性别");
                 updateSex.setVisibility(View.VISIBLE);
                 initViewForSex();
                 break;
@@ -183,8 +188,9 @@ public class UpdateInformation extends Activity {
     }
 
     private void updateData() {
+        User user = BmobUser.getCurrentUser(User.class);
         switch (updateType) {
-            case "updateName":
+           /* case "updateName":
                 if (inputText.getText().toString().trim().isEmpty()) {
                     Toast.makeText(this, "请输入姓名！", Toast.LENGTH_SHORT).show();
                     break;
@@ -192,7 +198,7 @@ public class UpdateInformation extends Activity {
                 if (UserInfo.user.getDoctor_name() == null || !(inputText.getText().toString().trim().equals(UserInfo.user.getDoctor_name()))) {
                     updatePersonData("doctor_name", inputText.getText().toString().trim());
                 }
-                break;
+                break;*/
             case "updateSex":
                 if (gender == null) {
                     Toast.makeText(this, "请选择类别！", Toast.LENGTH_SHORT).show();
@@ -206,6 +212,8 @@ public class UpdateInformation extends Activity {
             case "updateBirthday":
                 if (UserInfo.user.getDoctor_birthday() == null || !(UserInfo.user.getDoctor_birthday().equals(birthday))) {
                     updatePersonData("doctor_birthday", birthday);
+                    user.setBirthday(birthday);
+                    user.update();
                 }
                 break;
 /*            case "updateDepartment":
@@ -238,6 +246,8 @@ public class UpdateInformation extends Activity {
                     break;
                 }
                 if (UserInfo.user.getDoctor_telephone() == null || !(inputText.getText().toString().trim().equals(UserInfo.user.getDoctor_telephone()))) {
+                    user.setTelephone(inputText.getText().toString());
+                    user.update();
                     updatePersonData("doctor_telephone", inputText.getText().toString().trim());
                 }
                 break;
@@ -248,6 +258,11 @@ public class UpdateInformation extends Activity {
 
 
     public void updatePersonData(final String type, final String value) {
+
+        afterPostData(type,value);
+
+
+
 
      /*   personId = UserInfo.user.doctor_id;
         ContentValues values = new ContentValues();
@@ -307,14 +322,14 @@ public class UpdateInformation extends Activity {
 
     private void afterPostData(String type, String value) {
         switch (type) {
-            case "doctor_name":
+            /*case "doctor_name":
                 UserInfo.user.setDoctor_name(value);
                 SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCE_NAME, Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("UserName", value);
                 editor.commit();
                 finish();
-                break;
+                break;*/
             case "doctor_url":
                 UserInfo.user.setDoctor_gender(value);
                 finish();

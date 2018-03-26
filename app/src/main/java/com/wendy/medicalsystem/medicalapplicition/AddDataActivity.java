@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -15,6 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wendy.medicalsystem.R;
+import com.wendy.medicalsystem.entity.BloodGlucoseValue;
+import com.wendy.medicalsystem.entity.User;
+
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
  * Created by Administrator on 2018/3/20.
@@ -85,6 +92,29 @@ public class AddDataActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_ensure:
+
+                User user = BmobUser.getCurrentUser(User.class);
+                BloodGlucoseValue bloodGlucoseValue = new BloodGlucoseValue();
+                bloodGlucoseValue.setUser(user);
+                bloodGlucoseValue.setYear(data[0]);
+                bloodGlucoseValue.setMouth(data[1]);
+                bloodGlucoseValue.setDay(data[2]);
+                bloodGlucoseValue.setBoldGlucoseLevelValue(
+                        et_boldGlucoseLevel.getText().toString());
+                bloodGlucoseValue.setTimeSelect(timeSelect);
+                bloodGlucoseValue.save(new SaveListener<String>() {
+                    @Override
+                    public void done(String s, BmobException e) {
+                        if(e==null){
+                            Log.i("bmob","评论发表成功");
+                        }else{
+                            Log.i("bmob","失败："+e.getMessage());
+                        }
+                    }
+                });
+
+
+
                /* BloodGlucoseValue bloodGlucoseValue = new BloodGlucoseValue();
 
                 bloodGlucoseValue.setBoldGlucoseLevelValue(

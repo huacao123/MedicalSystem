@@ -14,10 +14,16 @@ import android.widget.TextView;
 import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.adapter.MyDataAdapter;
 import com.wendy.medicalsystem.entity.BloodGlucoseValue;
+import com.wendy.medicalsystem.entity.User;
 import com.wendy.medicalsystem.function.UserInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 /**
  * Created by - on 2018/3/21.
@@ -28,8 +34,7 @@ public class AddVerdanaActivity extends Activity {
     private TextView tv_addData;
     private ListView lv_myDataList;
     private MyDataAdapter myDataAdapter;
-    private List<BloodGlucoseValue> mBGValueList;
-    private UserInfo userInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,19 @@ public class AddVerdanaActivity extends Activity {
         mBGValueList = userInfo.getmBGValueList();
         myDataAdapter = new MyDataAdapter(this,mBGValueList);
         lv_myDataList.setAdapter(myDataAdapter);*/
+
+        lv_myDataList = findViewById(R.id.lv_myDataList);
+        User user = BmobUser.getCurrentUser(User.class);
+        BmobQuery<BloodGlucoseValue> query = new BmobQuery<>();
+        query.addWhereEqualTo("username",user);
+        query.findObjects(new FindListener<BloodGlucoseValue>() {
+            @Override
+            public void done(List<BloodGlucoseValue> list, BmobException e) {
+                myDataAdapter = new MyDataAdapter(AddVerdanaActivity.this,list);
+                lv_myDataList.setAdapter(myDataAdapter);
+            }
+        });
+
 
 
     }

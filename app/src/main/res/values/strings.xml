@@ -59,6 +59,7 @@
     <!-- minePage-->
     <string name="minePage_top_text">我</string>
     <string name="minePage_user_name">姓名</string>
+    <string name="minePage_user_setting">未设置</string>
     <string name="minePage_userInfo_barText">账号信息</string>
     <string name="minePage_userSetting_barText">设置</string>
     <string name="minePage_userExit_barText">退出当前账号</string>
@@ -139,6 +140,7 @@
     <string name="mineInformation_page_topText">个人信息</string>
     <string name="mineInformation_page_cancelText">我</string>
     <string name="mineInformation_page_userPhoto">头像</string>
+    <string name="mineInformation_page_userCategory">类别</string>
     <string name="mineInformation_page_userSex">性别</string>
     <string name="mineInformation_page_userBirthday">出生日期</string>
     <string name="mineInformation_page_userJob">职务</string>

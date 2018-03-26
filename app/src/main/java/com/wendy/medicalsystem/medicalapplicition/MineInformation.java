@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wendy.medicalsystem.R;
+import com.wendy.medicalsystem.entity.User;
 import com.wendy.medicalsystem.function.AppConfiguration;
 import com.wendy.medicalsystem.function.UserInfo;
 import com.wendy.medicalsystem.smart.SmartImageView;
@@ -33,6 +35,13 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.QueryListener;
 
 
 /**
@@ -44,7 +53,7 @@ public class MineInformation extends Activity implements View.OnClickListener {
     private RelativeLayout userSexButton;
     private RelativeLayout userBirthdayButton;
     private RelativeLayout userDepartmentButton;
-    private RelativeLayout userJobButton;
+    private RelativeLayout userCategoryButton;
     private RelativeLayout userTelephoneButton;
 
     private SmartImageView userPhoto;
@@ -52,7 +61,7 @@ public class MineInformation extends Activity implements View.OnClickListener {
     private TextView userSex;
     private TextView userBirthday;
     private TextView userDepartment;
-    private TextView userJob;
+    private TextView userCategory;
     private TextView userTelephone;
     private TextView cancelButton;
 
@@ -84,33 +93,48 @@ public class MineInformation extends Activity implements View.OnClickListener {
     private void initView() {
         dialog = new UploadDialog(this, R.style.UploadDialog, R.string.upload_dialog_textView);
         dialog.setCanceledOnTouchOutside(false);
-        userPhotoButton = (RelativeLayout) findViewById(R.id.mineInformation_userPhoto);
-        userNameButton = (RelativeLayout) findViewById(R.id.mineInformation_userName);
-        userSexButton = (RelativeLayout) findViewById(R.id.mineInformation_userSex);
-        userBirthdayButton = (RelativeLayout) findViewById(R.id.mineInformation_userBirthday);
-        userDepartmentButton = (RelativeLayout) findViewById(R.id.mineInformation_userDepartment);
-        userJobButton = (RelativeLayout) findViewById(R.id.mineInformation_userJob);
-        userTelephoneButton = (RelativeLayout) findViewById(R.id.mineInformation_userTelephone);
-        userPhoto = (SmartImageView) findViewById(R.id.mineInformation_userPhoto_realPhoto);
-        userName = (TextView) findViewById(R.id.mineInformation_userName_realName);
-        userSex = (TextView) findViewById(R.id.mineInformation_userSex_realSex);
-        userBirthday = (TextView) findViewById(R.id.mineInformation_userBirthday_realBirthday);
-        userDepartment = (TextView) findViewById(R.id.mineInformation_userDepartment_realDepartment);
-        userJob = (TextView) findViewById(R.id.mineInformation_userJob_realJob);
-        userTelephone = (TextView) findViewById(R.id.mineInformation_userTelephone_realTelephone);
-        cancelButton = (TextView) findViewById(R.id.mineInformation_cancelButton);
+        userPhotoButton = findViewById(R.id.mineInformation_userPhoto);
+        userNameButton = findViewById(R.id.mineInformation_userName);
+        userSexButton = findViewById(R.id.mineInformation_userSex);
+        userBirthdayButton = findViewById(R.id.mineInformation_userBirthday);
+       /* userDepartmentButton = findViewById(R.id.mineInformation_userDepartment);*/
+        userCategoryButton = findViewById(R.id.mineInformation_userCategory);
+        userTelephoneButton = findViewById(R.id.mineInformation_userTelephone);
+        userPhoto = findViewById(R.id.mineInformation_userPhoto_realPhoto);
+        userName = findViewById(R.id.mineInformation_userName_realName);
+        userSex = findViewById(R.id.mineInformation_userSex_realSex);
+        userBirthday = findViewById(R.id.mineInformation_userBirthday_realBirthday);
+       /* userDepartment = findViewById(R.id.mineInformation_userDepartment_realDepartment);*/
+        userCategory = findViewById(R.id.mineInformation_userCategory_realSex);
+        userTelephone = findViewById(R.id.mineInformation_userTelephone_realTelephone);
+        cancelButton = findViewById(R.id.mineInformation_cancelButton);
         cancelButton.setOnClickListener(this);
         userPhotoButton.setOnClickListener(this);
         userNameButton.setOnClickListener(this);
         userSexButton.setOnClickListener(this);
         userBirthdayButton.setOnClickListener(this);
-        userDepartmentButton.setOnClickListener(this);
-        userJobButton.setOnClickListener(this);
+        /*userDepartmentButton.setOnClickListener(this);*/
+        userCategoryButton.setOnClickListener(this);
         userTelephoneButton.setOnClickListener(this);
     }
 
     private void initData() {
-        if (UserInfo.user.getDoctor_url() != null) {
+
+        User user = BmobUser.getCurrentUser(User.class);
+        BmobQuery<User> query = new BmobQuery<>();
+        query.getObject(user.getObjectId(), new QueryListener<User>() {
+            @Override
+            public void done(User user, BmobException e) {
+                if(e==null) {
+                    setTextFunction(userName, user.getUsername());
+                    setTextFunction(userCategory, user.getCategory());
+                    setTextFunction(userSex, user.getSex().toString());
+                    setTextFunction(userBirthday, user.getBirthday());
+                    setTextFunction(userTelephone, user.getTelephone());
+                }
+            }
+        });
+/*      if (UserInfo.user.getDoctor_url() != null) {
             userPhoto.setImageUrl(UserInfo.user.getDoctor_url(), 2);
         }
         setTextFunction(userName, UserInfo.user.getDoctor_name());
@@ -118,7 +142,7 @@ public class MineInformation extends Activity implements View.OnClickListener {
         setTextFunction(userBirthday, UserInfo.user.getDoctor_birthday());
         setTextFunction(userDepartment, UserInfo.user.getDoctor_department());
         setTextFunction(userJob, UserInfo.user.getDoctor_job());
-        setTextFunction(userTelephone, UserInfo.user.getDoctor_telephone());
+        setTextFunction(userTelephone, UserInfo.user.getDoctor_telephone());*/
     }
 
     @Override
@@ -146,21 +170,21 @@ public class MineInformation extends Activity implements View.OnClickListener {
                     }
                 }, 50);
                 break;
-            case R.id.mineInformation_userName:
+           /* case R.id.mineInformation_userName:
                 updateInformation("updateName");
-                break;
+                break;*/
             case R.id.mineInformation_userSex:
                 updateInformation("updateSex");
                 break;
             case R.id.mineInformation_userBirthday:
                 updateInformation("updateBirthday");
                 break;
-            case R.id.mineInformation_userDepartment:
+            /*case R.id.mineInformation_userDepartment:
                 updateInformation("updateDepartment");
-                break;
-            case R.id.mineInformation_userJob:
-                updateInformation("updateJob");
-                break;
+                break;*/
+            /*case R.id.mineInformation_userCategory:
+                updateInformation("userCategory");
+                break;*/
             case R.id.mineInformation_userTelephone:
                 updateInformation("updateTelephone");
                 break;

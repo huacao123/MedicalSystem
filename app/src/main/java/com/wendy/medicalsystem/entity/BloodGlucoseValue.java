@@ -10,19 +10,19 @@ import cn.bmob.v3.BmobUser;
 
 public class BloodGlucoseValue extends BmobUser {
 
-    private UserInfo userInfo;
+    private User user;
     private String timeSelect;
     private String boldGlucoseLevelValue;
     private int year ;
     private int mouth;
     private int day;
 
-    public UserInfo getUserInfo() {
-        return userInfo;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getTimeSelect() {

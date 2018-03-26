@@ -33,7 +33,7 @@
 
     </RelativeLayout>
 
-    <com.example.wendy.utils.MyScrollView
+    <com.wendy.medicalsystem.tools.MyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -68,7 +68,7 @@
                     android:layout_marginRight="@dimen/minePage_userInfo_toLeftDis"
                     android:background="@mipmap/my_jiantou" />
 
-                <com.example.wendy.smart.SmartImageView
+                <com.wendy.medicalsystem.smart.SmartImageView
                     android:id="@+id/mineInformation_userPhoto_realPhoto"
                     android:layout_toLeftOf="@id/mineInformation_userPhoto_arrow"
                     android:layout_marginRight="@dimen/minePage_userInfo_toLeftDis"
@@ -114,11 +114,53 @@
                     android:id="@+id/mineInformation_userName_realName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/minePage_user_name"
+                    android:text="@string/minePage_user_setting"
                     android:textColor="@color/mainPage_listItem_patientDetails_color"
                     android:textSize="@dimen/mineInformation_userTextSize"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/mineInformation_userName_arrow"
+                    android:layout_marginRight="@dimen/minePage_userInfo_toLeftDis" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/filePage_tabHost_below_gap"
+                android:background="@color/filePage_tabHost_gap_color" />
+
+            <RelativeLayout
+                android:id="@+id/mineInformation_userCategory"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/mainPage_top_height"
+                android:background="@drawable/minepage_bar_selector"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mineInformation_page_userCategory"
+                    android:textSize="@dimen/minePage_userInfo_barTextSize"
+                    android:textColor="@color/mainPage_listItem_patientName_color"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/minePage_userInfo_toLeftDis" />
+
+                <ImageView
+                    android:id="@+id/mineInformation_userCategory_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/minePage_userInfo_toLeftDis"
+                    android:background="@mipmap/my_jiantou" />
+
+                <TextView
+                    android:id="@+id/mineInformation_userCategory_realSex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/minePage_user_setting"
+                    android:textColor="@color/mainPage_listItem_patientDetails_color"
+                    android:textSize="@dimen/mineInformation_userTextSize"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/mineInformation_userCategory_arrow"
                     android:layout_marginRight="@dimen/minePage_userInfo_toLeftDis" />
             </RelativeLayout>
 
@@ -156,7 +198,7 @@
                     android:id="@+id/mineInformation_userSex_realSex"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/minePage_user_name"
+                    android:text="@string/minePage_user_setting"
                     android:textColor="@color/mainPage_listItem_patientDetails_color"
                     android:textSize="@dimen/mineInformation_userTextSize"
                     android:layout_centerVertical="true"
@@ -198,7 +240,7 @@
                     android:id="@+id/mineInformation_userBirthday_realBirthday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/minePage_user_name"
+                    android:text="@string/minePage_user_setting"
                     android:textColor="@color/mainPage_listItem_patientDetails_color"
                     android:textSize="@dimen/mineInformation_userTextSize"
                     android:layout_centerVertical="true"
@@ -240,7 +282,7 @@
                     android:id="@+id/mineInformation_userTelephone_realTelephone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/minePage_user_name"
+                    android:text="@string/minePage_user_setting"
                     android:textColor="@color/mainPage_listItem_patientDetails_color"
                     android:textSize="@dimen/mineInformation_userTextSize"
                     android:layout_centerVertical="true"
@@ -280,7 +322,7 @@
                     android:id="@+id/mineInformation_userDepartment_realDepartment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/minePage_user_name"
+                    android:text="@string/minePage_user_setting"
                     android:textColor="@color/mainPage_listItem_patientDetails_color"
                     android:textSize="@dimen/mineInformation_userTextSize"
                     android:layout_centerVertical="true"
@@ -323,7 +365,7 @@
                     android:id="@+id/mineInformation_userJob_realJob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/minePage_user_name"
+                    android:text="@string/minePage_user_setting"
                     android:textColor="@color/mainPage_listItem_patientDetails_color"
                     android:textSize="@dimen/mineInformation_userTextSize"
                     android:layout_centerVertical="true"
@@ -333,5 +375,5 @@
 
 
         </LinearLayout>
-    </com.example.wendy.utils.MyScrollView>
+    </com.wendy.medicalsystem.tools.MyScrollView>
 </LinearLayout>

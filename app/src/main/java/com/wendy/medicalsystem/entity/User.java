@@ -15,6 +15,8 @@ public class User extends BmobUser{
     private String category;
     private Integer level;
     private String Community;
+    private String telephone;
+    private String birthday;
 
     public Boolean getSex() {
         return sex;
@@ -62,5 +64,21 @@ public class User extends BmobUser{
 
     public void setCommunity(String community) {
         Community = community;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 }

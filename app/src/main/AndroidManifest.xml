@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppStartupTheme">
         <activity
-            android:name="com.wendy.medicalsystem.medicalapplicition.StartupActivity"
+            android:name="com.wendy.medicalsystem.medicalapplicition.LoginActivity"
             android:theme="@style/AppStartupTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.wendy.medicalsystem.medicalapplicition.LoginActivity"
+            android:name="com.wendy.medicalsystem.medicalapplicition.StartupActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"></activity>
         <activity
@@ -48,6 +48,15 @@
             android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name="com.wendy.medicalsystem.medicalapplicition.AddDataActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".medicalapplicition.MineSetting"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".medicalapplicition.MineInformation"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".medicalapplicition.UpdateInformation"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden"></activity>
     </application>
