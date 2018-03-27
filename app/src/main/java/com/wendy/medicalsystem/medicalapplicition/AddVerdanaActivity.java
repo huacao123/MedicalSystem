@@ -22,6 +22,7 @@ import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
@@ -58,18 +59,30 @@ public class AddVerdanaActivity extends Activity {
         lv_myDataList.setAdapter(myDataAdapter);*/
 
         lv_myDataList = findViewById(R.id.lv_myDataList);
+        updateData();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateData();
+
+    }
+
+    private void updateData(){
         User user = BmobUser.getCurrentUser(User.class);
         BmobQuery<BloodGlucoseValue> query = new BmobQuery<>();
-        query.addWhereEqualTo("username",user);
+        query.addWhereEqualTo("user",new BmobPointer(user));
         query.findObjects(new FindListener<BloodGlucoseValue>() {
             @Override
             public void done(List<BloodGlucoseValue> list, BmobException e) {
                 if (e == null){
+                    Log.d("wenfang","list-size:"+list.size());
                     myDataAdapter = new MyDataAdapter(AddVerdanaActivity.this,list);
                     lv_myDataList.setAdapter(myDataAdapter);
                 }
             }
         });
     }
-
 }

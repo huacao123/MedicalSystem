@@ -92,7 +92,9 @@ public class AddDataActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_ensure:
-
+                if(!checkData()){
+                    break;
+                }
                 User user = BmobUser.getCurrentUser(User.class);
                 BloodGlucoseValue bloodGlucoseValue = new BloodGlucoseValue();
                 bloodGlucoseValue.setUser(user);
@@ -112,8 +114,6 @@ public class AddDataActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                 });
-
-
 
                /* BloodGlucoseValue bloodGlucoseValue = new BloodGlucoseValue();
 
@@ -137,5 +137,17 @@ public class AddDataActivity extends AppCompatActivity implements View.OnClickLi
                 break;
         }
 
+    }
+
+    private boolean checkData() {
+        if (et_date.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "请选择时间", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (et_boldGlucoseLevel.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "请输入血糖值", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }
