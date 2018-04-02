@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">医疗数据采集系统</string>
+    <string name="app_name">血糖康</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <!-- login page -->
