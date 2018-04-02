@@ -40,7 +40,8 @@
     <string name="mainPage_listItem_button_text2">上传中</string>
 
     <!-- filePage -->
-    <string name="filePage_top_text">文件</string>
+    <string name="filePage_top_text">血糖值</string>
+    <string name="filePage_top_text_add">添加血糖值</string>
     <string name="filePage_right_text">添加</string>
     <string name="filePage_tabHost_allText">全部</string>
     <string name="filePage_tabHost_wordText">文档</string>
@@ -55,9 +56,9 @@
     <string name="filePage_listItem_buttonText">查看</string>
     <string name="filePage_listItem_deleteText">删除</string>
 
-
+    <string name="recordPage_top_text">个人数据</string>
     <!-- minePage-->
-    <string name="minePage_top_text">我</string>
+    <string name="minePage_top_text">个人中心</string>
     <string name="minePage_user_name">姓名</string>
     <string name="minePage_user_setting">未设置</string>
     <string name="minePage_userInfo_barText">账号信息</string>
@@ -197,10 +198,9 @@
     <string name="delete_dialog_textView">正在删除，请稍候...</string>
 
 
-    <string name="tab_menu_alert">提醒</string>
-    <string name="tab_menu_profile">信息</string>
-    <string name="tab_menu_pay">我的</string>
-    <string name="tab_menu_setting">设置</string>
+    <string name="tab_menu_main">首页</string>
+    <string name="tab_menu_data">我的数据</string>
+    <string name="tab_menu_my">个人中心</string>
 
     <string name="action_about">About</string>
 </resources>

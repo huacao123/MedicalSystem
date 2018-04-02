@@ -36,10 +36,10 @@ import cn.bmob.v3.listener.SaveListener;
 public class RegisterActivity extends Activity {
 
     private TextView cancelButton;
-    private TextView userSexManImage;
-    private TextView userSexWomanImage;
-    private LinearLayout manButton;
-    private LinearLayout womanButton;
+//    private TextView userSexManImage;
+//    private TextView userSexWomanImage;
+//    private LinearLayout manButton;
+//    private LinearLayout womanButton;
     private EditText userName;
     private EditText userPass;
     private EditText userConfirmPass;
@@ -72,10 +72,10 @@ public class RegisterActivity extends Activity {
     final String  s1 = null;
     private void initView() {
         cancelButton = (TextView) findViewById(R.id.registerPage_cancelButton);
-        userSexManImage = (TextView) findViewById(R.id.registerPage_userSexManImage);
-        userSexWomanImage = (TextView) findViewById(R.id.registerPage_userSexWomanImage);
-        manButton = (LinearLayout) findViewById(R.id.registerPage_userSexMan);
-        womanButton = (LinearLayout) findViewById(R.id.registerPage_userSexWoman);
+//        userSexManImage = (TextView) findViewById(R.id.registerPage_userSexManImage);
+//        userSexWomanImage = (TextView) findViewById(R.id.registerPage_userSexWomanImage);
+//        manButton = (LinearLayout) findViewById(R.id.registerPage_userSexMan);
+//        womanButton = (LinearLayout) findViewById(R.id.registerPage_userSexWoman);
         userName = (EditText) findViewById(R.id.registerPage_userName);
         userPass = (EditText) findViewById(R.id.registerPage_userPassword);
         userConfirmPass = (EditText) findViewById(R.id.registerPage_userConfirmPassword);
@@ -95,32 +95,32 @@ public class RegisterActivity extends Activity {
                 finish();
             }
         });
-        manButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                userSexManImage.setBackground(getResources().getDrawable(R.mipmap.r_man_after));
-                userSexWomanImage.setBackground(getResources().getDrawable(R.mipmap.r_woman_before));
-                category = "医生";
-            }
-        });
-
-        womanButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                userSexManImage.setBackground(getResources().getDrawable(R.mipmap.r_man_before));
-                userSexWomanImage.setBackground(getResources().getDrawable(R.mipmap.r_woman_after));
-                category = "用户";
-            }
-        });
-
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkData()) {
-                    postData();
-                }
-            }
-        });
+//        manButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                userSexManImage.setBackground(getResources().getDrawable(R.mipmap.r_man_after));
+//                userSexWomanImage.setBackground(getResources().getDrawable(R.mipmap.r_woman_before));
+//                category = "医生";
+//            }
+//        });
+//
+//        womanButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                userSexManImage.setBackground(getResources().getDrawable(R.mipmap.r_man_before));
+//                userSexWomanImage.setBackground(getResources().getDrawable(R.mipmap.r_woman_after));
+//                category = "用户";
+//            }
+//        });
+//
+//        registerButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (checkData()) {
+//                    postData();
+//                }
+//            }
+//        });
     }
 
     private boolean checkData() {
@@ -129,10 +129,10 @@ public class RegisterActivity extends Activity {
             Toast.makeText(this, "请输入姓名！", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (category == null) {
-            Toast.makeText(this, "请选择类别！", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+//        if (category == null) {
+//            Toast.makeText(this, "请选择类别！", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
         if (community == null) {
             Toast.makeText(this, "社区不能为空！", Toast.LENGTH_SHORT).show();
             return false;
@@ -149,24 +149,24 @@ public class RegisterActivity extends Activity {
     }
 
     private void postData() {
-        if ("医生".equals(category)) {
-            User user = new User();
-            user.setUsername(userName.getText().toString().trim());
-            user.setPassword(userPass.getText().toString().trim());
-            user.setCategory(category);
-            user.setCommunity(community);
-            user.setLevel(1);
-            user.signUp(new SaveListener<String>() {
-                @Override
-                public void done(String s, BmobException e) {
-                    if (e == null) {
-                        Toast.makeText(getApplicationContext(), "医生注册成功", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "用户已注册：", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-        } else {
+//        if ("医生".equals(category)) {
+//            User user = new User();
+//            user.setUsername(userName.getText().toString().trim());
+//            user.setPassword(userPass.getText().toString().trim());
+//            user.setCategory(category);
+//            user.setCommunity(community);
+//            user.setLevel(1);
+//            user.signUp(new SaveListener<String>() {
+//                @Override
+//                public void done(String s, BmobException e) {
+//                    if (e == null) {
+//                        Toast.makeText(getApplicationContext(), "医生注册成功", Toast.LENGTH_LONG).show();
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "用户已注册：", Toast.LENGTH_LONG).show();
+//                    }
+//                }
+//            });
+//        } else {
             User user = new User();
             user.setUsername(userName.getText().toString().trim());
             user.setPassword(userPass.getText().toString().trim());
@@ -186,4 +186,4 @@ public class RegisterActivity extends Activity {
         }
     }
 
-}
+//}

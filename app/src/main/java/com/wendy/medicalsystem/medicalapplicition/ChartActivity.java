@@ -75,9 +75,9 @@ public class ChartActivity extends AppCompatActivity {
 
         if(mBloodGlucoseValue.size() >= 7){
             for (int i = 0;i < mBloodGlucoseValue.size(); i++) {
-            xValues[i] = mBloodGlucoseValue.get(i).getYear() + "-" + mBloodGlucoseValue.get(i).getMouth() + "-" + mBloodGlucoseValue.get(i).getDay();
-            yValues[i] = mBloodGlucoseValue.get(i).getBGlucoseLevelValue();
-            Log.d("wenfang", "xValues[i] : " + xValues[i] + "; yValues[i] : " + yValues[i]);
+                xValues[i] = mBloodGlucoseValue.get(i).getYear() + "-" + mBloodGlucoseValue.get(i).getMouth() + "-" + mBloodGlucoseValue.get(i).getDay();
+                yValues[i] = mBloodGlucoseValue.get(i).getBGlucoseLevelValue();
+                Log.d("wenfang", "xValues[i] : " + xValues[i] + "; yValues[i] : " + yValues[i]);
             }
             mColumnChartView.setVisibility(View.VISIBLE);
             ll_coordText.setVisibility(View.VISIBLE);
@@ -105,13 +105,12 @@ public class ChartActivity extends AppCompatActivity {
                       //  yValues[i]  = mBloodGlucoseValue.get(i).getBGlucoseLevelValue();
                         Log.d("wenfang","xValues[i] : "+xValues[i]+"; yValues[i] : "+yValues[i]);
                     }
-
                 }
             }
         });*/
 
 
-       // android.util.Log.d("wenfang",""+);
+        // android.util.Log.d("wenfang",""+);
 
 
     }

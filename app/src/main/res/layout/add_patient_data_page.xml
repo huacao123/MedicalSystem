@@ -10,6 +10,18 @@
         android:background="@color/mainPage_top_color">
 
         <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="返回"
+            android:textColor="@color/mainPage_searchBox_color"
+            android:textSize="@dimen/mainPage_search_textSize"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/filePage_editButton_distance" />
+
+        <TextView
             android:id="@+id/filePage_topName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

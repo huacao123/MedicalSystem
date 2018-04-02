@@ -32,10 +32,10 @@ public class HealthInformationFragment extends Fragment {
         View view = inflater.inflate(R.layout.health_information_page, container, false);
 
         List<String> images = new ArrayList<>();
-        images.add("http://img.zcool.cn/community/0166c756e1427432f875520f7cc838.jpg");
-        images.add("http://img.zcool.cn/community/018fdb56e1428632f875520f7b67cb.jpg");
-        images.add("http://img.zcool.cn/community/01fda356640b706ac725b2c8b99b08.jpg");
-        images.add("http://img.zcool.cn/community/0114a856640b6d32f87545731c076a.jpg");
+        images.add("http://bmob-cdn-17711.b0.upaiyun.com/2018/03/31/b8c5f52e4014213680d7ae85f235e452.jpg");
+        images.add("http://bmob-cdn-17711.b0.upaiyun.com/2018/03/31/777122cd40ce71ab801222c676c96230.jpg");
+        images.add("http://bmob-cdn-17711.b0.upaiyun.com/2018/03/31/d837423940f28e578026c4656bbda6fc.jpg");
+        images.add("http://bmob-cdn-17711.b0.upaiyun.com/2018/03/31/46ffb35140a9b94f80b0ee0064acb261.jpg");
         Banner banner = (Banner) view.findViewById(R.id.banner);
         //设置banner样式
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);

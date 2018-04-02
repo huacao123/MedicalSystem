@@ -13,7 +13,7 @@
             android:id="@+id/filePage_topName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/filePage_top_text"
+            android:text="@string/filePage_top_text_add"
             android:textColor="@color/mainPage_searchBox_color"
             android:textSize="@dimen/mainPage_top_textSize"
             android:layout_centerInParent="true" />
@@ -44,38 +44,40 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
-
-
-        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="日期"/>
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请输入日期"/>
+
+            <EditText
+                android:id="@+id/et_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+        </LinearLayout>
 
 
-        <EditText
-            android:id="@+id/et_data"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="288dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            />
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="时间段"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="请选择时间段" />
 
         <RadioGroup
             android:id="@+id/rg_timeSelect"
@@ -99,23 +101,26 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="286dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="血糖值"/>
-        <EditText
-            android:id="@+id/et_boldGlucoseLevel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="date"
-            android:hint="输入范围0-15mmol/L"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="血糖值" />
+
+            <EditText
+                android:id="@+id/et_boldGlucoseLevel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

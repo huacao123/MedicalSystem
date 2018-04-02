@@ -38,7 +38,7 @@ public class DataRecordFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.patient_record_page,container,false);
-        TextView txt_content = (TextView) view.findViewById(R.id.txt_content);
+        //TextView txt_content = (TextView) view.findViewById(R.id.txt_content);
         ImageView addData = (ImageView) view.findViewById(R.id.addData);
         ImageView chart = (ImageView) view.findViewById(R.id.chart);
         addData.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +77,7 @@ public class DataRecordFragment extends Fragment {
 
             }
         });
-        txt_content.setText("第二个Fragment");
+        //txt_content.setText("第二个Fragment");
         return view;
     }
 }

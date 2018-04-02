@@ -17,7 +17,7 @@
     <color name="fragment_bottom_textColor">#FFFFFF</color>
 
     <!-- mainPage-->
-    <color name="mainPage_top_color">#66C3CC</color>
+    <color name="mainPage_top_color">#83C98B</color>
     <color name="mainPage_search_color">#E2E2E2</color>
     <color name="mainPage_searchBox_color">#FFFFFF</color>
     <color name="mainPage_listView_background">#F4F4F4</color>
