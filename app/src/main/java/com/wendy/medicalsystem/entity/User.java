@@ -1,13 +1,15 @@
 package com.wendy.medicalsystem.entity;
 
 
+import java.io.Serializable;
+
 import cn.bmob.v3.BmobUser;
 
 /**
  * Created by - on 2018/3/17.
  */
 
-public class User extends BmobUser{
+public class User extends BmobUser implements Serializable{
 
     private String sex;
     private String nick;

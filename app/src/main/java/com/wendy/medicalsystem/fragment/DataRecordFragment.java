@@ -12,8 +12,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wendy.medicalsystem.R;
+import com.wendy.medicalsystem.entity.BloodGlucoseValue;
+import com.wendy.medicalsystem.entity.User;
 import com.wendy.medicalsystem.medicalapplicition.AddVerdanaActivity;
 import com.wendy.medicalsystem.medicalapplicition.ChartActivity;
+
+import java.io.Serializable;
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobPointer;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 
 /**
@@ -41,8 +52,29 @@ public class DataRecordFragment extends Fragment {
         chart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity() , ChartActivity.class);
-                startActivity(intent);
+                Log.d("wenfang","chart");
+
+                User user = BmobUser.getCurrentUser(User.class);
+                BmobQuery<BloodGlucoseValue> query = new BmobQuery<>();
+                query.addWhereEqualTo("user",new BmobPointer(user));
+                query.setLimit(7);
+                query.findObjects(new FindListener<BloodGlucoseValue>() {
+                    @Override
+                    public void done(List<BloodGlucoseValue> list, BmobException e) {
+                        if (e == null){
+                            Intent intent = new Intent();
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("User",(Serializable)list);
+                            intent.setClass(getActivity(),ChartActivity.class);
+                            intent.putExtras(bundle);
+                            //Log.d("wenfang","list:" + list.size());
+                            //Intent intent = new Intent(getActivity() , ChartActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
+
+
             }
         });
         txt_content.setText("第二个Fragment");

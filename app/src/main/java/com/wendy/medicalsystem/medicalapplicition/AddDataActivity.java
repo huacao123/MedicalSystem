@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
@@ -36,6 +38,9 @@ public class AddDataActivity extends AppCompatActivity implements View.OnClickLi
     private TextView tv_cancel;
     private String timeSelect = "午餐前";
     private int[] data = new int[3] ;
+    private float minBoldGlucoseLevel = 0;
+    private float maxBoldGlucoseLevel = 15;
+    private boolean isOutofRange = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,6 +85,29 @@ public class AddDataActivity extends AppCompatActivity implements View.OnClickLi
         });
 
         et_boldGlucoseLevel=findViewById(R.id.et_boldGlucoseLevel);
+        et_boldGlucoseLevel.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.toString().isEmpty() == false){
+                    float value = Float.valueOf(charSequence.toString());
+                    if ((value < minBoldGlucoseLevel) || (value > maxBoldGlucoseLevel)){
+                        isOutofRange = true;
+                        Toast.makeText(AddDataActivity.this, "输入范围0-15mmol/L", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         tv_ensure = findViewById(R.id.tv_ensure);
         tv_cancel = findViewById(R.id.tv_cancel);
@@ -146,6 +174,15 @@ public class AddDataActivity extends AppCompatActivity implements View.OnClickLi
         }
         if (et_boldGlucoseLevel.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "请输入血糖值", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        /*if (et_boldGlucoseLevel.getText().toString() ) {
+            Toast.makeText(this, "请输入血糖值", Toast.LENGTH_SHORT).show();
+            return false;
+        }*/
+        if(isOutofRange){
+            Toast.makeText(AddDataActivity.this, "输入范围0-15mmol/L", Toast.LENGTH_SHORT).show();
+            isOutofRange = false;
             return false;
         }
         return true;

@@ -10,6 +10,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -62,9 +64,34 @@ public class ChartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_combo_line_column_chart);
 
+        mBloodGlucoseValue = (List<BloodGlucoseValue>) this.getIntent().getSerializableExtra("User");
 
 
-        User user = BmobUser.getCurrentUser(User.class);
+        Log.d("wenfang","mBloodGlucoseValue:" + mBloodGlucoseValue.size());
+
+        mColumnChartView = (ColumnChartView) findViewById(R.id.ccv_main);
+        LinearLayout ll_coordText = findViewById(R.id.ll_coordText);
+        TextView tv_noChart = findViewById(R.id.tv_noChart);
+
+        if(mBloodGlucoseValue.size() >= 7){
+            for (int i = 0;i < mBloodGlucoseValue.size(); i++) {
+            xValues[i] = mBloodGlucoseValue.get(i).getYear() + "-" + mBloodGlucoseValue.get(i).getMouth() + "-" + mBloodGlucoseValue.get(i).getDay();
+            yValues[i] = mBloodGlucoseValue.get(i).getBGlucoseLevelValue();
+            Log.d("wenfang", "xValues[i] : " + xValues[i] + "; yValues[i] : " + yValues[i]);
+            }
+            mColumnChartView.setVisibility(View.VISIBLE);
+            ll_coordText.setVisibility(View.VISIBLE);
+            tv_noChart.setVisibility(View.GONE);
+            initView();
+        }else {
+            mColumnChartView.setVisibility(View.GONE);
+            ll_coordText.setVisibility(View.GONE);
+            tv_noChart.setVisibility(View.VISIBLE);
+        }
+
+
+
+       /* User user = BmobUser.getCurrentUser(User.class);
         BmobQuery<BloodGlucoseValue> query = new BmobQuery<>();
         query.addWhereEqualTo("user",new BmobPointer(user));
         query.setLimit(7);
@@ -75,24 +102,23 @@ public class ChartActivity extends AppCompatActivity {
                     mBloodGlucoseValue = list;
                     for (int i = 0;i < mBloodGlucoseValue.size(); i++){
                         xValues[i] = mBloodGlucoseValue.get(i).getYear()+"-"+mBloodGlucoseValue.get(i).getMouth()+"-"+mBloodGlucoseValue.get(i).getDay();
-                        yValues[i]  = mBloodGlucoseValue.get(i).getBGlucoseLevelValue();
+                      //  yValues[i]  = mBloodGlucoseValue.get(i).getBGlucoseLevelValue();
                         Log.d("wenfang","xValues[i] : "+xValues[i]+"; yValues[i] : "+yValues[i]);
                     }
 
-
                 }
             }
-        });
-        Log.d("wenfang","111xValues[i] : "+xValues[1]+"; yValues[i] : "+yValues[1]);
-        initView();
+        });*/
 
+
+       // android.util.Log.d("wenfang",""+);
 
 
     }
     private void initView() {
 
-        Log.d("wenfang","111222xValues[i] : "+xValues[1]+"; yValues[i] : "+yValues[1]);
-        mColumnChartView = (ColumnChartView) findViewById(R.id.ccv_main);
+        Log.d("wenfang", "initView: "+"xValues[i] : " + xValues[1] + "; yValues[i] : " + yValues[1]);
+
         mColumnChartView.setOnValueTouchListener(new ValueTouchListener());
         /*========== 柱状图数据填充 ==========*/
         List<Column> columnList = new ArrayList<>(); //柱子列表
@@ -101,8 +127,8 @@ public class ChartActivity extends AppCompatActivity {
         for (int i = 0; i < xValues.length; ++i) {
             subcolumnValueList = new ArrayList<>();
             subcolumnValueList.add(new SubcolumnValue(Float.parseFloat(yValues[i]), ChartUtils.pickColor()));
-            subcolumnValueList.add(new SubcolumnValue((float) Math.random() * 100f, ChartUtils.pickColor()));
-
+            //subcolumnValueList.add(new SubcolumnValue((float) Math.random() * 100f, ChartUtils.pickColor()));
+            Log.d("wenfang","Float.parseFloat(yValues[i]= "+Float.parseFloat(yValues[i]));
             Column column = new Column(subcolumnValueList);
             column.setHasLabels(true);                    //设置列标签
 //            column.setHasLabelsOnlyForSelected(true);       //只有当点击时才显示列标签
@@ -131,7 +157,7 @@ public class ChartActivity extends AppCompatActivity {
         /*===== 设置竖轴最大值 =====*/
         //法一：
         Viewport v = mColumnChartView.getMaximumViewport();
-        v.top = 1000;
+        v.top = 20;
         mColumnChartView.setCurrentViewport(v);
         /*法二：
         Viewport v = mColumnChartView.getCurrentViewport();
@@ -145,7 +171,7 @@ public class ChartActivity extends AppCompatActivity {
         @Override
         public void onValueSelected(int columnIndex, int subcolumnIndex, SubcolumnValue value) {
             Toast.makeText(ChartActivity.this, xValues[columnIndex]+"成绩 : " +
-                    (int)value.getValue(),Toast.LENGTH_SHORT).show();
+                    (float)value.getValue(),Toast.LENGTH_SHORT).show();
         }
 
         @Override
