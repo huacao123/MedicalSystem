@@ -169,7 +169,7 @@ public class ChartActivity extends AppCompatActivity {
 
         @Override
         public void onValueSelected(int columnIndex, int subcolumnIndex, SubcolumnValue value) {
-            Toast.makeText(ChartActivity.this, xValues[columnIndex]+"成绩 : " +
+            Toast.makeText(ChartActivity.this, xValues[columnIndex]+"的血糖值 : " +
                     (float)value.getValue(),Toast.LENGTH_SHORT).show();
         }
 

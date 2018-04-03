@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.entity.BloodGlucoseValue;
 import com.wendy.medicalsystem.entity.User;
+import com.wendy.medicalsystem.medicalapplicition.AddCaseHistoryActivity;
 import com.wendy.medicalsystem.medicalapplicition.AddVerdanaActivity;
 import com.wendy.medicalsystem.medicalapplicition.ChartActivity;
 
@@ -41,6 +42,7 @@ public class DataRecordFragment extends Fragment {
         //TextView txt_content = (TextView) view.findViewById(R.id.txt_content);
         ImageView addData = (ImageView) view.findViewById(R.id.addData);
         ImageView chart = (ImageView) view.findViewById(R.id.chart);
+        ImageView caseHistory = (ImageView)view.findViewById(R.id.caseHistory);
         addData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +79,15 @@ public class DataRecordFragment extends Fragment {
 
             }
         });
+
+        caseHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity() , AddCaseHistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //txt_content.setText("第二个Fragment");
         return view;
     }
