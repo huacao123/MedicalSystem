@@ -77,7 +77,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/filePage_tabHost_below_gap"
                 android:background="@color/filePage_tabHost_gap_color" />
-
+<!--
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/registerPage_topHeight"
@@ -149,7 +149,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/filePage_tabHost_below_gap"
                 android:background="@color/filePage_tabHost_gap_color" />
-
+-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/registerPage_topHeight"
