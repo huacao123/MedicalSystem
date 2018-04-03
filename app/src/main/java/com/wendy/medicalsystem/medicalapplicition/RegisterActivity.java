@@ -68,6 +68,7 @@ public class RegisterActivity extends Activity {
         // Log.i("zzl" , user1.getCategory());
         initView();
         initData();
+        category = "用户";
     }
     final String  s1 = null;
     private void initView() {
@@ -113,14 +114,14 @@ public class RegisterActivity extends Activity {
 //            }
 //        });
 //
-//        registerButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (checkData()) {
-//                    postData();
-//                }
-//            }
-//        });
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkData()) {
+                    postData();
+                }
+            }
+        });
     }
 
     private boolean checkData() {
