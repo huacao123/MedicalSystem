@@ -6,18 +6,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.adapter.MyDataAdapter;
 import com.wendy.medicalsystem.entity.BloodGlucoseValue;
 import com.wendy.medicalsystem.entity.User;
-import com.wendy.medicalsystem.function.UserInfo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -40,7 +36,7 @@ public class AddVerdanaActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.add_patient_data_page);
+        setContentView(R.layout.activity_addverdana);
 
         tv_addData = findViewById(R.id.tv_addData);
         tv_addData.setOnClickListener(new View.OnClickListener() {

@@ -1,8 +1,11 @@
 package com.wendy.medicalsystem.medicalapplicition;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -18,11 +21,18 @@ public class AddCaseHistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_case_history_page);
+        setContentView(R.layout.activity_addcasehistory);
 
-        EditText et_cease_history_title = findViewById(R.id.et_cease_history_title);
-        ImageView iv_case_history_upload = findViewById(R.id.iv_case_history_upload);
-        EditText et_sickness_describe = findViewById(R.id.et_sickness_describe);
+        Button button1 = findViewById(R.id.test);
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddCaseHistoryActivity.this,AddCaseActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
     }
