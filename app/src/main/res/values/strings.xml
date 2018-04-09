@@ -204,12 +204,16 @@
 
     <string name="action_about">About</string>
     
-    <!-- add_case_history_page -->
+    <!-- activity_addcase -->
     <string name="case_history_add">添加病历</string>
     <string name="case_history_title">标题</string>
     <string name="case_history_title_hint">请输入标题</string>
     <string name="case_history_upload">病历上传</string>
     <string name="sickness_describe">症状描述</string>
     <string name="sickness_describe_hint">请描述症状</string>
+
+    <!-- activity_addcasehistory -->
+    <string name="case_history">我的病历</string>
+
 
 </resources>

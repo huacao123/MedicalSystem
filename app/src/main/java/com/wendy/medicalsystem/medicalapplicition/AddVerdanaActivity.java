@@ -3,6 +3,7 @@ package com.wendy.medicalsystem.medicalapplicition;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -38,13 +39,21 @@ public class AddVerdanaActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_addverdana);
 
-        tv_addData = findViewById(R.id.tv_addData);
+        FloatingActionButton fab_addData = findViewById(R.id.fab_addData);
+        fab_addData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddVerdanaActivity.this,AddDataActivity.class));
+            }
+        });
+
+        /*tv_addData = findViewById(R.id.tv_addData);
         tv_addData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AddVerdanaActivity.this,AddDataActivity.class));
             }
-        });
+        });*/
 
         /*userInfo = DataSupport.find(UserInfo.class,UserInfo.user.doctor_id,true);
         lv_myDataList = findViewById(R.id.lv_myDataList);

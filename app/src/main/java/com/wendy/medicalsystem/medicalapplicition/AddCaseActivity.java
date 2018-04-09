@@ -13,7 +13,7 @@ public class AddCaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_case_history_page);
+        setContentView(R.layout.activity_addcase);
 
         EditText et_cease_history_title = findViewById(R.id.et_cease_history_title);
         ImageView iv_case_history_upload = findViewById(R.id.iv_case_history_upload);

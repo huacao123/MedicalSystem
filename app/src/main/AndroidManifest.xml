@@ -62,6 +62,9 @@
         <activity android:name=".medicalapplicition.AddCaseHistoryActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".medicalapplicition.AddCaseActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
 </manifest>
