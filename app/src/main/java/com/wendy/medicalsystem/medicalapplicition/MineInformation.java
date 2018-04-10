@@ -1,15 +1,21 @@
 package com.wendy.medicalsystem.medicalapplicition;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -71,10 +77,12 @@ public class MineInformation extends Activity implements View.OnClickListener {
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
     private static final String PHOTO_FILE_NAME = "temp_photo.jpg";
     private File tempFile;
+    private File tempFile1;
     private File file;
     private Bitmap bitmap;
     private String doctor_url = null;
     private Dialog dialog;
+    private Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -238,20 +246,32 @@ public class MineInformation extends Activity implements View.OnClickListener {
      * 拍照
      */
     public void camera(View view) {
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         Intent wrapperIntent = Intent.createChooser(intent, null);
+
         // 拍照选择
         if (hasSdcard()) {
-            intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                    Uri.fromFile(new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-                            + "/MedicalApplication/Camera/userImage/", PHOTO_FILE_NAME)));
+            tempFile1 = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
+                    + "/MedicalApplication/Camera/userImage/", PHOTO_FILE_NAME);
+            if(currentapiVersion < 24) {
+                //intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile1));
+                imageUri = Uri.fromFile(tempFile);
+            }else {
+                imageUri = FileProvider.getUriForFile(MineInformation.this,
+                        "com.wendy.fileprovider",tempFile1);
+            }
+            intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
+            Log.d("wenfang","----startActivityForResult");
+            startActivityForResult(intent, PHOTO_REQUEST_CAMERA);
         }
-        startActivityForResult(wrapperIntent, PHOTO_REQUEST_CAMERA);
+
     }
 
     @SuppressLint("ShowToast")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("wenfang","----onActivityResult");
         if (requestCode == PHOTO_REQUEST_GALLERY && resultCode == RESULT_OK) {
             if (data != null) {
                 // 获取uri
@@ -259,22 +279,36 @@ public class MineInformation extends Activity implements View.OnClickListener {
                 crop(uri);
             }
         } else if (requestCode == PHOTO_REQUEST_CAMERA && resultCode == RESULT_OK) {
-            if (hasSdcard()) {
+            Log.d("wenfang","----PHOTO_REQUEST_CAMERA");
+            try{
+                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                userPhoto.setImageBitmap(bitmap);
+
+            }catch (FileNotFoundException e){
+                e.printStackTrace();
+            }
+
+
+            /*if (hasSdcard()) {
                 tempFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
                         + "/MedicalApplication/Camera/userImage/", PHOTO_FILE_NAME);
                 crop(Uri.fromFile(tempFile));
             } else {
                 Toast.makeText(MineInformation.this, "未找到存储卡，无法存储照片", Toast.LENGTH_SHORT).show();
-            }
+            }*/
 
         } else if (requestCode == PHOTO_REQUEST_CUT) {
+
+
             String dir = Environment.getExternalStorageDirectory()
                     .getAbsolutePath() + "/MedicalApplication/Camera/userImage/";
             file = new File(dir);
+
             if (!file.exists()) {
                 // file不存在
                 file.mkdirs();
             }
+           // Bitmap bitmap2 = BitmapFactory.decodeStream(getContentResolver().openInputStream(Uri.fromFile(file));
             File picture = new File(file, "user_image.jpg");
             try {
                 bitmap = data.getParcelableExtra("data");
@@ -331,6 +365,7 @@ public class MineInformation extends Activity implements View.OnClickListener {
     //	 */
     @SuppressLint("ShowToast")
     public void upload(File file) {
+        userPhoto.setImageUrl(file.toString(), 2, true);
 /*        if (dialog != null) {
             dialog.show();
         }
