@@ -63,7 +63,7 @@
                 android:textSize="@dimen/registerPage_editTextSize" />
 
             <EditText
-                android:id="@+id/et_cease_history_title"
+                android:id="@+id/et_case_history_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
