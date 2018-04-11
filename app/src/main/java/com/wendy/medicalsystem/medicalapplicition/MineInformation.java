@@ -21,6 +21,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -63,6 +65,7 @@ public class MineInformation extends Activity implements View.OnClickListener {
     private RelativeLayout userTelephoneButton;
 
     private SmartImageView userPhoto;
+    private ImageView imageView;
     private TextView userName;
     private TextView userSex;
     private TextView userBirthday;
@@ -99,6 +102,7 @@ public class MineInformation extends Activity implements View.OnClickListener {
     }
 
     private void initView() {
+        imageView = findViewById(R.id.iv_test);
         dialog = new UploadDialog(this, R.style.UploadDialog, R.string.upload_dialog_textView);
         dialog.setCanceledOnTouchOutside(false);
         userPhotoButton = findViewById(R.id.mineInformation_userPhoto);
@@ -247,20 +251,34 @@ public class MineInformation extends Activity implements View.OnClickListener {
      */
     public void camera(View view) {
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        Intent wrapperIntent = Intent.createChooser(intent, null);
+
+       // Intent wrapperIntent = Intent.createChooser(intent, null);
 
         // 拍照选择
         if (hasSdcard()) {
-            tempFile1 = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-                    + "/MedicalApplication/Camera/userImage/", PHOTO_FILE_NAME);
+           // tempFile1 = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
+           //         + "/MedicalApplication/Camera/userImage/", PHOTO_FILE_NAME);
+
+            tempFile1 = new File(getExternalCacheDir(),
+                    "output_image.jpg");
+            try{
+                if (tempFile1.exists()){
+                    tempFile1.delete();
+                }
+                tempFile1.createNewFile();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
+
             if(currentapiVersion < 24) {
                 //intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile1));
                 imageUri = Uri.fromFile(tempFile);
             }else {
                 imageUri = FileProvider.getUriForFile(MineInformation.this,
-                        "com.wendy.fileprovider",tempFile1);
+                        "com.example.test",tempFile1);
             }
+            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
             intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
             Log.d("wenfang","----startActivityForResult");
             startActivityForResult(intent, PHOTO_REQUEST_CAMERA);
@@ -268,10 +286,10 @@ public class MineInformation extends Activity implements View.OnClickListener {
 
     }
 
-    @SuppressLint("ShowToast")
+   // @SuppressLint("ShowToast")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("wenfang","----onActivityResult");
+        Log.d("wenfang","----onActivityResult:"+requestCode);
         if (requestCode == PHOTO_REQUEST_GALLERY && resultCode == RESULT_OK) {
             if (data != null) {
                 // 获取uri
@@ -282,7 +300,7 @@ public class MineInformation extends Activity implements View.OnClickListener {
             Log.d("wenfang","----PHOTO_REQUEST_CAMERA");
             try{
                 Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
-                userPhoto.setImageBitmap(bitmap);
+                imageView.setImageBitmap(bitmap);
 
             }catch (FileNotFoundException e){
                 e.printStackTrace();

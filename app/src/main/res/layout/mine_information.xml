@@ -373,6 +373,12 @@
                     android:layout_marginRight="@dimen/minePage_userInfo_toLeftDis" />
             </RelativeLayout>
 
+            <ImageView
+                android:id="@+id/iv_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_done"
+                android:visibility="gone"/>
 
         </LinearLayout>
     </com.wendy.medicalsystem.tools.MyScrollView>

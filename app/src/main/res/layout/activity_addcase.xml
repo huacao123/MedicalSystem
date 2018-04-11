@@ -80,7 +80,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/registerPage_topHeight"
+            android:layout_height="200dp"
             android:layout_marginTop="@dimen/registerPage_toTop"
             android:background="@color/registerPage_barBackground"
             android:orientation="horizontal">
@@ -96,10 +96,10 @@
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/iv_case_history_upload"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:src="@mipmap/logo_chart" />
+                android:layout_width="180dp"
+                android:layout_height="200dp"
+                android:src="@mipmap/logo_chart"
+                android:layout_marginLeft="@dimen/registerPage_toLeft"/>
         </LinearLayout>
 
         <LinearLayout
