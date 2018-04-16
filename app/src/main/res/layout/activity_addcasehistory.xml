@@ -14,13 +14,14 @@
           android:id="@+id/tv_cancel"
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
-          android:text="返回"
-          android:textColor="@color/mainPage_searchBox_color"
-          android:textSize="@dimen/mainPage_search_textSize"
           android:layout_centerVertical="true"
-          android:gravity="center"
-          android:layout_alignParentLeft="true"
-          android:layout_marginLeft="@dimen/filePage_editButton_distance" />
+          android:layout_marginLeft="@dimen/uploadRecord_topBar_patientImage_toRight"
+          android:drawableLeft="@mipmap/goback_image"
+          android:drawablePadding="@dimen/mineSetting_cancelButton_dis"
+          android:gravity="center_vertical"
+          android:text="@string/uploadRecord_goBackText"
+          android:textColor="@color/uploadRecord_topTextColor"
+          android:textSize="@dimen/uploadRecord_topBar_backButton_textSize"  />
 
       <TextView
           android:id="@+id/filePage_topName"

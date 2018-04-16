@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.wendy.medicalsystem.R;
 
@@ -18,19 +19,28 @@ import com.wendy.medicalsystem.R;
 
 public class AddCaseHistoryActivity extends AppCompatActivity {
 
-
+    private TextView tv_cancel;
+    private FloatingActionButton fab_addCaseHistory;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcasehistory);
 
-        FloatingActionButton fab_addCaseHistory = findViewById(R.id.fab_addCaseHistory);
+        fab_addCaseHistory = findViewById(R.id.fab_addCaseHistory);
 
         fab_addCaseHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddCaseHistoryActivity.this,AddCaseActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        tv_cancel = findViewById(R.id.tv_cancel);
+        tv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
