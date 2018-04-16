@@ -49,7 +49,7 @@ import lecho.lib.hellocharts.view.ComboLineColumnChartView;
  */
 
 public class ChartActivity extends AppCompatActivity {
-
+    private TextView registerPage_cancelButton;
     private ColumnChartView mColumnChartView;
     List<BloodGlucoseValue> mBloodGlucoseValue;
 
@@ -72,6 +72,14 @@ public class ChartActivity extends AppCompatActivity {
         mColumnChartView = (ColumnChartView) findViewById(R.id.ccv_main);
         LinearLayout ll_coordText = findViewById(R.id.ll_coordText);
         TextView tv_noChart = findViewById(R.id.tv_noChart);
+
+        registerPage_cancelButton = findViewById(R.id.registerPage_cancelButton);
+        registerPage_cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         if(mBloodGlucoseValue.size() >= 7){
             for (int i = 0;i < mBloodGlucoseValue.size(); i++) {

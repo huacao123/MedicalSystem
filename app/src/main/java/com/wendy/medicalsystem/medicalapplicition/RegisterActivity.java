@@ -83,8 +83,11 @@ public class RegisterActivity extends Activity {
         registerButton = (RelativeLayout) findViewById(R.id.registerPage_registerButton);
         spinner = (Spinner) findViewById(R.id.spin);
         final String[] testDate = {"A社区" ,"B社区"};
-        adapter = new ArrayAdapter<String>(this , android.R.layout.simple_spinner_item , testDate);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        //adapter = new ArrayAdapter<String>(this , android.R.layout.simple_spinner_item , testDate);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        //spinner.setAdapter(adapter);
+		adapter = new ArrayAdapter<String>(this , android.R.layout.simple_spinner_dropdown_item , testDate);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
     }

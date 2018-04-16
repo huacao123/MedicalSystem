@@ -41,7 +41,7 @@ public class DataRecordFragment extends Fragment {
         View view = inflater.inflate(R.layout.patient_record_page,container,false);
         //TextView txt_content = (TextView) view.findViewById(R.id.txt_content);
         ImageView addData = (ImageView) view.findViewById(R.id.addData);
-        ImageView chart = (ImageView) view.findViewById(R.id.chart);
+/*        ImageView chart = (ImageView) view.findViewById(R.id.chart);*/
         ImageView caseHistory = (ImageView)view.findViewById(R.id.caseHistory);
         addData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +51,7 @@ public class DataRecordFragment extends Fragment {
             }
         });
 
-        chart.setOnClickListener(new View.OnClickListener() {
+      /*  chart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("wenfang","chart");
@@ -78,7 +78,7 @@ public class DataRecordFragment extends Fragment {
 
 
             }
-        });
+        });*/
 
         caseHistory.setOnClickListener(new View.OnClickListener() {
             @Override

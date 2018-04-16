@@ -127,6 +127,7 @@ public class LoginActivity extends Activity {
     }
 
     private void doForget() {
+        Toast.makeText(LoginActivity.this,"sorry,该功能暂未上线",Toast.LENGTH_SHORT).show();
         /*ForgetPasswordActivity forgetPasswordActivity = new ForgetPasswordActivity();
         forgetPasswordActivity.show(LoginActivity.this);*/
     }

@@ -103,6 +103,7 @@
     <string name="registerPage_userNameHint">请输入用户名</string>
     <string name="registerPage_userPasswordHint">请输入密码</string>
     <string name="registerPage_userConfirmPasswordHint">请确认密码</string>
+    <string name="registerPage_select">请选择所在社区</string>
 
     <!-- showResource page-->
     <string name="showResourcePage_topText">查看</string>
