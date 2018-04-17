@@ -85,4 +85,6 @@
     <color name="text_yellow">#FFC800</color>
     <color name="text_topbar">#694E42</color>
     <color name="div_white">#E5E5E5</color>
+
+    <color name="main_embellishment_gray">#c3c2c2</color>
 </resources>
