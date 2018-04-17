@@ -54,7 +54,7 @@ public class AddCaseHistoryActivity extends AppCompatActivity {
             }
         });
 
-        lv_myCaseHistoryList.findViewById(R.id.lv_myCaseHistoryList);
+        lv_myCaseHistoryList = findViewById(R.id.lv_myCaseHistoryList);
         for (int i = 1; i < 32; i++) {
             list.add("2016-12-" + i);
         }
@@ -66,9 +66,6 @@ public class AddCaseHistoryActivity extends AppCompatActivity {
                 Toast.makeText(AddCaseHistoryActivity.this, "您点击了" + i, Toast.LENGTH_LONG).show();
             }
         });
-
-
-
 
     }
 }
