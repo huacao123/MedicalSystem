@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -16,9 +17,17 @@ import android.widget.Toast;
 
 import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.adapter.MyCaseHistoryAdapter;
+import com.wendy.medicalsystem.entity.CaseHistoryValue;
+import com.wendy.medicalsystem.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobPointer;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 /**
  * Created by Administrator on 2018/4/3.
@@ -66,6 +75,21 @@ public class AddCaseHistoryActivity extends AppCompatActivity {
                 Toast.makeText(AddCaseHistoryActivity.this, "您点击了" + i, Toast.LENGTH_LONG).show();
             }
         });
+
+/*        private void updateData(){
+            User user = BmobUser.getCurrentUser(User.class);
+            BmobQuery<CaseHistoryValue> query = new BmobQuery<>();
+            query.addWhereEqualTo("user",new BmobPointer(user));
+            query.findObjects(new FindListener<CaseHistoryValue>() {
+                @Override
+                public void done(List<CaseHistoryValue> mlist, BmobException e) {
+                    if (e == null){
+                        //myCaseHistoryAdapter = new MyCaseHistoryAdapter(mlist,AddCaseHistoryActivity.this);
+                        //lv_myCaseHistoryList.setAdapter(myCaseHistoryAdapter);
+                    }
+                }
+            });
+        }*/
 
     }
 }
