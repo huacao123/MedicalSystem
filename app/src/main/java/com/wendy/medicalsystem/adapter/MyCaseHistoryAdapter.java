@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wendy.medicalsystem.R;
@@ -54,6 +55,9 @@ public class MyCaseHistoryAdapter extends BaseAdapter {
     }
 
     class MyViewHolder{
+        TextView tv_date;
+        TextView tv_title;
+        ImageView iv_case;
         TextView tv_content;
     }
 
