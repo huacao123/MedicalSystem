@@ -1,5 +1,6 @@
 package com.wendy.medicalsystem.medicalapplicition;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,11 +10,14 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,11 +37,13 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
     public static final int TAKE_PHOTO = 1;
     private ImageView iv_case_history_upload;
     private Uri imageUri;
+    private TextView tv_case_history_date;
     private EditText et_case_history_title;
     private EditText et_sickness_describe;
     private TextView tv_ensure;
     private TextView tv_cancel;
 
+    private String mCaseHistoryDate;
     private String mCaseHistoryTitle;
     private String mSicknessDescribe;
 
@@ -46,6 +52,7 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcase);
 
+        tv_case_history_date = findViewById(R.id.tv_case_history_date);
         et_case_history_title = findViewById(R.id.et_case_history_title);
         iv_case_history_upload = findViewById(R.id.iv_case_history_upload);
         et_sickness_describe = findViewById(R.id.et_sickness_describe);
@@ -53,6 +60,7 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
         tv_cancel = findViewById(R.id.tv_cancel);
         tv_cancel.setOnClickListener(this);
         tv_ensure.setOnClickListener(this);
+        tv_case_history_date.setOnClickListener(this);
         iv_case_history_upload.setOnClickListener(this);
     }
 
@@ -66,13 +74,15 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
                 if(!checkData()){
                     break;
                 }
+                mCaseHistoryDate = tv_case_history_date.getText().toString();
                 mCaseHistoryTitle = et_case_history_title.getText().toString();
                 mSicknessDescribe = et_sickness_describe.getText().toString();
                 User user = BmobUser.getCurrentUser(User.class);
                 CaseHistoryValue caseHistoryValue = new CaseHistoryValue();
                 caseHistoryValue.setUser(user);
+                caseHistoryValue.setCaseHistoryDate(mCaseHistoryDate);
                 caseHistoryValue.setCaseHistoryTitle(mCaseHistoryTitle);
-                caseHistoryValue.setSicknessDescribe(mSicknessDescribe);
+                caseHistoryValue.setCaseHistoryContent(mSicknessDescribe);
                 caseHistoryValue.save(new SaveListener<String>() {
                     @Override
                     public void done(String s, BmobException e) {
@@ -85,6 +95,23 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
                 });
                 startActivity(new Intent(AddCaseActivity.this,AddCaseHistoryActivity.class));
                 Toast.makeText(AddCaseActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_case_history_date:
+                AlertDialog.Builder builder = new AlertDialog.Builder(AddCaseActivity.this);
+                builder.setTitle("请选择时间").setIcon(R.mipmap.ic_launcher);
+                final LinearLayout layout_alert = (LinearLayout)getLayoutInflater().inflate(R.layout.datepicker_dialog,null);
+                builder.setView(layout_alert);
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DatePicker datePicker = layout_alert.findViewById(R.id.date_picker);
+                        Integer data1 = datePicker.getYear();
+                        Integer data2 = datePicker.getMonth()+1;
+                        Integer data3 = datePicker.getDayOfMonth();
+                        tv_case_history_date.setText(data1+"-"+data2+"-"+data3);
+                    }
+                }).create().show();
+
                 break;
             case R.id.iv_case_history_upload:
                 File outputImage = new File(getExternalCacheDir(),
@@ -130,8 +157,16 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private boolean checkData(){
+        if(tv_case_history_date.getText().toString().isEmpty()){
+            Toast.makeText(this, "请输入日期！", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         if(et_case_history_title.getText().toString().isEmpty()){
             Toast.makeText(this, "请输入标题！", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(et_sickness_describe.getText().toString().isEmpty()){
+            Toast.makeText(this, "请描述症状! ", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

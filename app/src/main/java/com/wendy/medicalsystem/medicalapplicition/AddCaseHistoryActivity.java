@@ -39,7 +39,7 @@ public class AddCaseHistoryActivity extends AppCompatActivity {
     private FloatingActionButton fab_addCaseHistory;
     private ListView lv_myCaseHistoryList;
     private MyCaseHistoryAdapter myCaseHistoryAdapter;
-    private List<String> list = new ArrayList<>();
+    //private List<String> list = new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,20 +63,23 @@ public class AddCaseHistoryActivity extends AppCompatActivity {
             }
         });
 
-        lv_myCaseHistoryList = findViewById(R.id.lv_myCaseHistoryList);
+        lv_myCaseHistoryList=findViewById(R.id.lv_myCaseHistoryList);
+        updateData();
+
+       /* lv_myCaseHistoryList = findViewById(R.id.lv_myCaseHistoryList);
         for (int i = 1; i < 32; i++) {
             list.add("2016-12-" + i);
         }
-        myCaseHistoryAdapter = new MyCaseHistoryAdapter(list,AddCaseHistoryActivity.this);
+       // myCaseHistoryAdapter = new MyCaseHistoryAdapter(AddCaseHistoryActivity.this);
         lv_myCaseHistoryList.setAdapter(myCaseHistoryAdapter);
         lv_myCaseHistoryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(AddCaseHistoryActivity.this, "您点击了" + i, Toast.LENGTH_LONG).show();
             }
-        });
-
-/*        private void updateData(){
+        });*/
+    }
+        private void updateData(){
             User user = BmobUser.getCurrentUser(User.class);
             BmobQuery<CaseHistoryValue> query = new BmobQuery<>();
             query.addWhereEqualTo("user",new BmobPointer(user));
@@ -84,12 +87,13 @@ public class AddCaseHistoryActivity extends AppCompatActivity {
                 @Override
                 public void done(List<CaseHistoryValue> mlist, BmobException e) {
                     if (e == null){
-                        //myCaseHistoryAdapter = new MyCaseHistoryAdapter(mlist,AddCaseHistoryActivity.this);
-                        //lv_myCaseHistoryList.setAdapter(myCaseHistoryAdapter);
+                        Log.d("wenfang","size = "+ mlist.size());
+                        myCaseHistoryAdapter = new MyCaseHistoryAdapter(AddCaseHistoryActivity.this,mlist);
+                        lv_myCaseHistoryList.setAdapter(myCaseHistoryAdapter);
                     }
                 }
             });
-        }*/
+        }
 
-    }
+
 }

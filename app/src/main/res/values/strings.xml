@@ -212,6 +212,8 @@
     <string name="case_history_upload">病历上传</string>
     <string name="sickness_describe">症状描述</string>
     <string name="sickness_describe_hint">请描述症状</string>
+    <string name="case_history_date">日期</string>
+    <string name="case_history_date_hint">请输入日期</string>
 
     <!-- activity_addcasehistory -->
     <string name="case_history">我的病历</string>

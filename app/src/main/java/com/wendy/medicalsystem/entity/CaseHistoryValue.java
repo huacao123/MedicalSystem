@@ -12,9 +12,10 @@ import cn.bmob.v3.BmobObject;
 
 public class CaseHistoryValue extends BmobObject {
     private User user;
+    private String caseHistoryDate;
     private String caseHistoryTitle;
     private File caseHistoryPicture;
-    private String sicknessDescribe;
+    private String caseHistoryContent;
 
     public User getUser() {
         return user;
@@ -22,6 +23,14 @@ public class CaseHistoryValue extends BmobObject {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getCaseHistoryDate() {
+        return caseHistoryDate;
+    }
+
+    public void setCaseHistoryDate(String caseHistoryDate) {
+        this.caseHistoryDate = caseHistoryDate;
     }
 
     public String getCaseHistoryTitle() {
@@ -40,11 +49,11 @@ public class CaseHistoryValue extends BmobObject {
         this.caseHistoryPicture = caseHistoryPicture;
     }
 
-    public String getSicknessDescribe() {
-        return sicknessDescribe;
+    public String getCaseHistoryContent() {
+        return caseHistoryContent;
     }
 
-    public void setSicknessDescribe(String sicknessDescribe) {
-        this.sicknessDescribe = sicknessDescribe;
+    public void setCaseHistoryContent(String caseHistoryContent) {
+        this.caseHistoryContent = caseHistoryContent;
     }
 }

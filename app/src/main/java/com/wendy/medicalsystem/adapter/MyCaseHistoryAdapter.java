@@ -1,6 +1,7 @@
 package com.wendy.medicalsystem.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,28 +10,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wendy.medicalsystem.R;
+import com.wendy.medicalsystem.entity.CaseHistoryValue;
 
+import java.io.File;
 import java.util.List;
 
 public class MyCaseHistoryAdapter extends BaseAdapter {
-    private List<String> list;
+    private List<CaseHistoryValue> mCaseHistoryValue;
     private Context context;
     private LayoutInflater layoutInflater;
 
-    public MyCaseHistoryAdapter(List<String> list,Context context){
-        this.list = list;
+    public MyCaseHistoryAdapter(Context context,List<CaseHistoryValue> mCaseHistoryValue){
+        this.mCaseHistoryValue = mCaseHistoryValue;
         this.context = context;
-        layoutInflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        return list.size();
+        return mCaseHistoryValue.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return i;
+        return mCaseHistoryValue.get(i);
     }
 
     @Override
@@ -40,25 +42,33 @@ public class MyCaseHistoryAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        MyViewHolder holder;
+        final MyCaseHistoryAdapter.MyViewHolder holder;
+        layoutInflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if(view == null){
             view = layoutInflater.inflate(R.layout.item_lv,viewGroup,false);
-            holder = new MyViewHolder();
+            holder = new MyCaseHistoryAdapter.MyViewHolder();
+            holder.tv_date = view.findViewById(R.id.tv_date);
+            holder.tv_title = view.findViewById(R.id.tv_title);
+            holder.iv_case = view.findViewById(R.id.iv_case);
             holder.tv_content = view.findViewById(R.id.tv_content);
             view.setTag(holder);
         } else {
             holder = (MyViewHolder) view.getTag();
         }
-        String data = list.get(i);
-        holder.tv_content.setText(data);
+        if(!mCaseHistoryValue.isEmpty()){
+            holder.tv_date.setText(mCaseHistoryValue.get(i).getCaseHistoryDate()+"  ");
+            holder.tv_title.setText(mCaseHistoryValue.get(i).getCaseHistoryTitle());
+            holder.iv_case.setBackgroundResource(R.drawable.mess2);
+            holder.tv_content.setText("  " + mCaseHistoryValue.get(i).getCaseHistoryContent());
+        }
         return view;
     }
 
-    class MyViewHolder{
+    public static class MyViewHolder{
         TextView tv_date;
         TextView tv_title;
         ImageView iv_case;
         TextView tv_content;
     }
-
 }
