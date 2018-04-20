@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.function.UsedTools;
 import com.wendy.medicalsystem.function.UserInfo;
+import com.wendy.medicalsystem.tools.ExitApplication;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,6 +50,7 @@ public class MineSetting extends Activity implements View.OnClickListener {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.mine_setting);
         initView();
+        ExitApplication.getInstance().addActivity(this);
     }
 
     @Override

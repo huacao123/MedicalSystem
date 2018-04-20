@@ -1,6 +1,7 @@
 package com.wendy.medicalsystem.adapter;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.entity.CaseHistoryValue;
@@ -15,10 +17,15 @@ import com.wendy.medicalsystem.entity.CaseHistoryValue;
 import java.io.File;
 import java.util.List;
 
+import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.DownloadFileListener;
+
 public class MyCaseHistoryAdapter extends BaseAdapter {
     private List<CaseHistoryValue> mCaseHistoryValue;
     private Context context;
     private LayoutInflater layoutInflater;
+    private String mCaseHistoryPictureUrl;
 
     public MyCaseHistoryAdapter(Context context,List<CaseHistoryValue> mCaseHistoryValue){
         this.mCaseHistoryValue = mCaseHistoryValue;
@@ -61,8 +68,39 @@ public class MyCaseHistoryAdapter extends BaseAdapter {
             holder.tv_title.setText(mCaseHistoryValue.get(i).getCaseHistoryTitle());
             holder.iv_case.setBackgroundResource(R.drawable.mess2);
             holder.tv_content.setText("  " + mCaseHistoryValue.get(i).getCaseHistoryContent());
+            mCaseHistoryPictureUrl = mCaseHistoryValue.get(i).getCaseHistoryPictureUrl();
+
+            //BmobFile bmobfile =new BmobFile("test.png","",mCaseHistoryPictureUrl);
+            //downloadFile(bmobfile);
         }
         return view;
+    }
+
+    private void downloadFile(BmobFile file){
+        //允许设置下载文件的存储路径，默认下载文件的目录为：context.getApplicationContext().getCacheDir()+"/bmob/"
+        File saveFile = new File(Environment.getExternalStorageDirectory(), file.getFilename());
+        file.download(saveFile, new DownloadFileListener() {
+
+            @Override
+            public void onStart() {
+               // Toast.makeText(MyCaseHistoryAdapter.this, "开始下载...", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void done(String savePath,BmobException e) {
+                if(e==null){
+                 //   toast("下载成功,保存路径:"+savePath);
+                }else{
+                 //   toast("下载失败："+e.getErrorCode()+","+e.getMessage());
+                }
+            }
+
+            @Override
+            public void onProgress(Integer value, long newworkSpeed) {
+                Log.i("bmob","下载进度："+value+","+newworkSpeed);
+            }
+
+        });
     }
 
     public static class MyViewHolder{

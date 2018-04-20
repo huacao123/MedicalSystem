@@ -31,6 +31,7 @@ import com.wendy.medicalsystem.entity.User;
 import com.wendy.medicalsystem.function.AppConfiguration;
 import com.wendy.medicalsystem.function.UserInfo;
 import com.wendy.medicalsystem.smart.SmartImageView;
+import com.wendy.medicalsystem.tools.ExitApplication;
 import com.wendy.medicalsystem.tools.SelectPopupWindow;
 import com.wendy.medicalsystem.tools.UploadDialog;
 
@@ -93,6 +94,7 @@ public class MineInformation extends Activity implements View.OnClickListener {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.mine_information);
         initView();
+        ExitApplication.getInstance().addActivity(this);
     }
 
     @Override

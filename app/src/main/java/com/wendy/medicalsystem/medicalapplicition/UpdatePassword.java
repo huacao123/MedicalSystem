@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.function.UserInfo;
+import com.wendy.medicalsystem.tools.ExitApplication;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +39,7 @@ public class UpdatePassword extends Activity {
         setContentView(R.layout.update_password);
         initView();
         initData();
+        ExitApplication.getInstance().addActivity(this);
     }
 
     private void initView() {

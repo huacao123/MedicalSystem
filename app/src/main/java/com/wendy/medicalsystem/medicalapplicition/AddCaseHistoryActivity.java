@@ -19,6 +19,8 @@ import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.adapter.MyCaseHistoryAdapter;
 import com.wendy.medicalsystem.entity.CaseHistoryValue;
 import com.wendy.medicalsystem.entity.User;
+import com.wendy.medicalsystem.fragment.DataRecordFragment;
+import com.wendy.medicalsystem.tools.ExitApplication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,8 @@ public class AddCaseHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcasehistory);
 
+        ExitApplication.getInstance().addActivity(this);
+
         fab_addCaseHistory = findViewById(R.id.fab_addCaseHistory);
 
         fab_addCaseHistory.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +63,8 @@ public class AddCaseHistoryActivity extends AppCompatActivity {
         tv_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(AddCaseHistoryActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -94,6 +99,13 @@ public class AddCaseHistoryActivity extends AppCompatActivity {
                 }
             });
         }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(AddCaseHistoryActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
 
 
 }

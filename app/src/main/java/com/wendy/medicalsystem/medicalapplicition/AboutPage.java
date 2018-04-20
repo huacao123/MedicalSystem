@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wendy.medicalsystem.R;
+import com.wendy.medicalsystem.tools.ExitApplication;
 
 /**
  * Created by sjaiwl on 15/4/3.
@@ -24,6 +25,7 @@ public class AboutPage extends Activity implements View.OnClickListener {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.aboutpage);
         initView();
+        ExitApplication.getInstance().addActivity(this);
     }
 
     private void initView() {

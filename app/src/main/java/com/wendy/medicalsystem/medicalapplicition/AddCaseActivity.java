@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
@@ -14,38 +16,50 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.entity.CaseHistoryValue;
 import com.wendy.medicalsystem.entity.User;
+import com.wendy.medicalsystem.tools.ExitApplication;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UploadFileListener;
 
 public class AddCaseActivity extends AppCompatActivity implements View.OnClickListener{
     public static final int TAKE_PHOTO = 1;
+    private static final int  UPLOAD_OK = 2;
+    private static final int  UPLOAD_FAIL = 3;
     private ImageView iv_case_history_upload;
     private Uri imageUri;
+    private File outputImage;
+    private BmobFile bmobFile;
     private TextView tv_case_history_date;
     private EditText et_case_history_title;
     private EditText et_sickness_describe;
     private TextView tv_ensure;
     private TextView tv_cancel;
+    private Button bt_upload_ensure;
+    private ImageView iv_sign_check_icon;
 
     private String mCaseHistoryDate;
     private String mCaseHistoryTitle;
     private String mSicknessDescribe;
+    private String mCaseHistoryPictureUrl;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,12 +70,15 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
         et_case_history_title = findViewById(R.id.et_case_history_title);
         iv_case_history_upload = findViewById(R.id.iv_case_history_upload);
         et_sickness_describe = findViewById(R.id.et_sickness_describe);
+        bt_upload_ensure = findViewById(R.id.bt_upload_ensure);
         tv_ensure = findViewById(R.id.tv_ensure);
         tv_cancel = findViewById(R.id.tv_cancel);
         tv_cancel.setOnClickListener(this);
         tv_ensure.setOnClickListener(this);
         tv_case_history_date.setOnClickListener(this);
         iv_case_history_upload.setOnClickListener(this);
+        bt_upload_ensure.setOnClickListener(this);
+        ExitApplication.getInstance().addActivity(this);
     }
 
     @Override
@@ -83,6 +100,7 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
                 caseHistoryValue.setCaseHistoryDate(mCaseHistoryDate);
                 caseHistoryValue.setCaseHistoryTitle(mCaseHistoryTitle);
                 caseHistoryValue.setCaseHistoryContent(mSicknessDescribe);
+                caseHistoryValue.setCaseHistoryPictureUrl(mCaseHistoryPictureUrl);
                 caseHistoryValue.save(new SaveListener<String>() {
                     @Override
                     public void done(String s, BmobException e) {
@@ -93,6 +111,8 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                 });
+
+
                 startActivity(new Intent(AddCaseActivity.this,AddCaseHistoryActivity.class));
                 Toast.makeText(AddCaseActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
                 break;
@@ -111,10 +131,10 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
                         tv_case_history_date.setText(data1+"-"+data2+"-"+data3);
                     }
                 }).create().show();
-
                 break;
             case R.id.iv_case_history_upload:
-                File outputImage = new File(getExternalCacheDir(),
+                bt_upload_ensure.setEnabled(true);
+                outputImage = new File(getExternalCacheDir(),
                         "output_image.jpg");
                 try{
                     if (outputImage.exists()){
@@ -134,9 +154,55 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
                 intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
                 startActivityForResult(intent,TAKE_PHOTO);
                 break;
+            case R.id.bt_upload_ensure:
+                bt_upload_ensure.setEnabled(false);
+                bmobFile = new BmobFile(outputImage);
+                bmobFile.uploadblock(new UploadFileListener() {
+                    @Override
+                    public void done(BmobException e) {
+                        if(e==null){
+                            mCaseHistoryPictureUrl =  bmobFile.getFileUrl();//返回的上传文件的完整地址
+                            Toast.makeText(AddCaseActivity.this, "上传文件成功 ", Toast.LENGTH_SHORT).show();
+                            //mHandler.sendEmptyMessage(UPLOAD_OK);
+
+                        }else{
+                            bt_upload_ensure.setEnabled(true);
+                            Toast.makeText(AddCaseActivity.this, "上传文件失败 ", Toast.LENGTH_SHORT).show();
+                            //mHandler.sendEmptyMessage(UPLOAD_FAIL);
+
+                        }
+                    }
+
+                    @Override
+                    public void onProgress(Integer value) {
+                        // 返回的上传进度（百分比）
+                        Log.d("wenfang","onProgress"+value);
+                        /*if(value == 100){
+                            mHandler.sendEmptyMessage(UPLOAD_OK);
+                        }*/
+                    }
+                });
+                break;
         }
 
     }
+
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case UPLOAD_OK:
+                    iv_sign_check_icon.setBackground(getResources().getDrawable(R.drawable.sign_check_icon));
+                    break;
+                case UPLOAD_FAIL:
+                    iv_sign_check_icon.setBackground(getResources().getDrawable(R.drawable.sign_error_icon));
+                    break;
+
+            }
+        }
+    };
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){

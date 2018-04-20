@@ -7,9 +7,11 @@ import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.fragment.MyFragmentPagerAdapter;
+import com.wendy.medicalsystem.tools.ExitApplication;
 
 
 /**
@@ -108,5 +110,17 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                     break;
             }
         }
+    }
+
+    private long exitTime = 0;
+    @Override
+    public void onBackPressed() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            Toast.makeText(MainActivity.this, "再按一次退出应用", Toast.LENGTH_SHORT)
+                    .show();
+            exitTime = System.currentTimeMillis();
+            return;
+        }
+        ExitApplication.getInstance().exit();
     }
 }

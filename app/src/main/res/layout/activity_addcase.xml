@@ -128,10 +128,24 @@
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/iv_case_history_upload"
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="160dp"
-                android:layout_marginLeft="@dimen/registerPage_toLeft"
+                android:layout_marginLeft="20dp"
                 android:src="@mipmap/logo_chart" />
+
+            <Button
+                android:id="@+id/bt_upload_ensure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/case_history_upload_ensure"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="10dp"/>
+
+            <ImageView
+                android:id="@+id/iv_sign_check_icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="70dp" />
         </LinearLayout>
 
         <LinearLayout

@@ -17,6 +17,7 @@ import com.wendy.medicalsystem.function.UserInfo;
 import com.wendy.medicalsystem.smart.WebImageCache;
 import com.wendy.medicalsystem.tools.BitmapUtil;
 import com.wendy.medicalsystem.tools.DragImageView;
+import com.wendy.medicalsystem.tools.ExitApplication;
 
 public class ViewPicture extends Activity {
     private int window_width, window_height;// 控件宽度
@@ -31,6 +32,8 @@ public class ViewPicture extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.view_picture);
+        ExitApplication.getInstance().addActivity(this);
+
         layout = (RelativeLayout) findViewById(R.id.viewPage_layout);
         dragImageView = (DragImageView) findViewById(R.id.view_picture);
         layout.setOnClickListener(new View.OnClickListener() {

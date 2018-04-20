@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by sjaiwl on 15/3/19.
+ * Created by wendy on 18/4/19.
  */
 public class ExitApplication extends Application {
     private List<Activity> activityList = new LinkedList<Activity>();

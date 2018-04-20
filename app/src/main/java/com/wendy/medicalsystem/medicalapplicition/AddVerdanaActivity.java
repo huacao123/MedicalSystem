@@ -14,6 +14,7 @@ import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.adapter.MyDataAdapter;
 import com.wendy.medicalsystem.entity.BloodGlucoseValue;
 import com.wendy.medicalsystem.entity.User;
+import com.wendy.medicalsystem.tools.ExitApplication;
 
 import java.io.Serializable;
 import java.util.List;
@@ -40,6 +41,7 @@ public class AddVerdanaActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_addverdana);
+        ExitApplication.getInstance().addActivity(this);
 
         FloatingActionButton fab_addData = findViewById(R.id.fab_addData);
         fab_addData.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +82,8 @@ public class AddVerdanaActivity extends Activity {
         tv_data_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(AddVerdanaActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -127,5 +130,12 @@ public class AddVerdanaActivity extends Activity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(AddVerdanaActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

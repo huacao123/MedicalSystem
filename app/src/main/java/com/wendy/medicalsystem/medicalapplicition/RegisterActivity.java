@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.entity.User;
+import com.wendy.medicalsystem.tools.ExitApplication;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,6 +60,7 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.register_page);
+        ExitApplication.getInstance().addActivity(this);
         Bmob.initialize(this, "dd4cb01f5cd8540023d02f6fdd8220c4");
         //  User user = new User("1", "1", "1", "1");
         // Toast.makeText(getApplicationContext() , ""+user.save(), Toast.LENGTH_LONG).show();

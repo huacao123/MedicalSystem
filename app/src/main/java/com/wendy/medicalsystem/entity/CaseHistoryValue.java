@@ -14,7 +14,7 @@ public class CaseHistoryValue extends BmobObject {
     private User user;
     private String caseHistoryDate;
     private String caseHistoryTitle;
-    private File caseHistoryPicture;
+    private String caseHistoryPicture;
     private String caseHistoryContent;
 
     public User getUser() {
@@ -41,11 +41,11 @@ public class CaseHistoryValue extends BmobObject {
         this.caseHistoryTitle = caseHistoryTitle;
     }
 
-    public File getCaseHistoryPicture() {
+    public String getCaseHistoryPictureUrl() {
         return caseHistoryPicture;
     }
 
-    public void setCaseHistoryPicture(File caseHistoryPicture) {
+    public void setCaseHistoryPictureUrl(String caseHistoryPicture) {
         this.caseHistoryPicture = caseHistoryPicture;
     }
 

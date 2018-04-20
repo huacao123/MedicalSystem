@@ -19,6 +19,7 @@ import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.adapter.MyDataAdapter;
 import com.wendy.medicalsystem.entity.BloodGlucoseValue;
 import com.wendy.medicalsystem.entity.User;
+import com.wendy.medicalsystem.tools.ExitApplication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,9 +64,9 @@ public class ChartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_combo_line_column_chart);
+        ExitApplication.getInstance().addActivity(this);
 
         mBloodGlucoseValue = (List<BloodGlucoseValue>) this.getIntent().getSerializableExtra("User");
-
 
         Log.d("wenfang","mBloodGlucoseValue:" + mBloodGlucoseValue.size());
 

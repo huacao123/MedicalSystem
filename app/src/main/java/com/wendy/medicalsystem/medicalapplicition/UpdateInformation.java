@@ -18,6 +18,7 @@ import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.entity.User;
 import com.wendy.medicalsystem.function.UsedTools;
 import com.wendy.medicalsystem.function.UserInfo;
+import com.wendy.medicalsystem.tools.ExitApplication;
 
 import java.util.Calendar;
 
@@ -57,6 +58,7 @@ public class UpdateInformation extends Activity {
         initView();
         getUpdateType();
         initData();
+        ExitApplication.getInstance().addActivity(this);
 
     }
 

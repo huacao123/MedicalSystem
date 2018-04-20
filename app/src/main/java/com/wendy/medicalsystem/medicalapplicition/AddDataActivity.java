@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.entity.BloodGlucoseValue;
 import com.wendy.medicalsystem.entity.User;
+import com.wendy.medicalsystem.tools.ExitApplication;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
@@ -46,6 +47,8 @@ public class AddDataActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adddata);
+
+        ExitApplication.getInstance().addActivity(this);
 
         et_date = findViewById(R.id.et_data);
         et_date.setOnClickListener(new View.OnClickListener() {
