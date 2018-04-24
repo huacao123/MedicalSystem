@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -87,6 +88,8 @@ public class MineInformation extends Activity implements View.OnClickListener {
     private String doctor_url = null;
     private Dialog dialog;
     private Uri imageUri;
+
+    private File outputImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,8 +255,29 @@ public class MineInformation extends Activity implements View.OnClickListener {
      * 拍照
      */
     public void camera(View view) {
-        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
 
+        outputImage = new File(getExternalCacheDir(),
+                "output_image.jpg");
+        try{
+            if (outputImage.exists()){
+                outputImage.delete();
+            }
+            outputImage.createNewFile();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        if(Build.VERSION.SDK_INT >= 24){
+            imageUri = FileProvider.getUriForFile(MineInformation.this,
+                    "com.wendy.fileprovider",outputImage);
+        }else {
+            imageUri = Uri.fromFile(outputImage);
+        }
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
+        startActivityForResult(intent,PHOTO_REQUEST_CAMERA);
+//        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+
+/*
        // Intent wrapperIntent = Intent.createChooser(intent, null);
 
         // 拍照选择
@@ -285,13 +309,25 @@ public class MineInformation extends Activity implements View.OnClickListener {
             Log.d("wenfang","----startActivityForResult");
             startActivityForResult(intent, PHOTO_REQUEST_CAMERA);
         }
+*/
 
     }
 
    // @SuppressLint("ShowToast")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("wenfang","----onActivityResult:"+requestCode);
+
+        if(resultCode == RESULT_OK){
+            try{
+                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver()
+                        .openInputStream(imageUri));
+                //iv_case_history_upload.setImageBitmap(bitmap);
+            }catch (FileNotFoundException e){
+                e.printStackTrace();
+            }
+
+
+        /*Log.d("wenfang","----onActivityResult:"+requestCode);
         if (requestCode == PHOTO_REQUEST_GALLERY && resultCode == RESULT_OK) {
             if (data != null) {
                 // 获取uri
@@ -306,7 +342,7 @@ public class MineInformation extends Activity implements View.OnClickListener {
 
             }catch (FileNotFoundException e){
                 e.printStackTrace();
-            }
+            }*/
 
 
             /*if (hasSdcard()) {
@@ -337,7 +373,7 @@ public class MineInformation extends Activity implements View.OnClickListener {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
                 bos.flush();
                 bos.close();
-                upload(picture);
+               // upload(picture);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -383,9 +419,9 @@ public class MineInformation extends Activity implements View.OnClickListener {
     //    /*
     //    * 上传照片
     //	 */
-    @SuppressLint("ShowToast")
+  /*  @SuppressLint("ShowToast")
     public void upload(File file) {
-        userPhoto.setImageUrl(file.toString(), 2, true);
+        userPhoto.setImageUrl(file.toString(), 2, true);*/
 /*        if (dialog != null) {
             dialog.show();
         }
@@ -433,5 +469,5 @@ public class MineInformation extends Activity implements View.OnClickListener {
 
             }
         });*/
-    }
+/*    }*/
 }
