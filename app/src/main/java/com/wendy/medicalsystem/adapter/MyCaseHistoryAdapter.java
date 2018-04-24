@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.wendy.medicalsystem.R;
 import com.wendy.medicalsystem.entity.CaseHistoryValue;
 
@@ -66,41 +67,12 @@ public class MyCaseHistoryAdapter extends BaseAdapter {
         if(!mCaseHistoryValue.isEmpty()){
             holder.tv_date.setText(mCaseHistoryValue.get(i).getCaseHistoryDate()+"  ");
             holder.tv_title.setText(mCaseHistoryValue.get(i).getCaseHistoryTitle());
-            holder.iv_case.setBackgroundResource(R.drawable.mess2);
+//            holder.iv_case.setBackgroundResource(R.drawable.mess2);
             holder.tv_content.setText("  " + mCaseHistoryValue.get(i).getCaseHistoryContent());
             mCaseHistoryPictureUrl = mCaseHistoryValue.get(i).getCaseHistoryPictureUrl();
-
-            //BmobFile bmobfile =new BmobFile("test.png","",mCaseHistoryPictureUrl);
-            //downloadFile(bmobfile);
+            Glide.with(context).load(mCaseHistoryPictureUrl).into(holder.iv_case);
         }
         return view;
-    }
-
-    private void downloadFile(BmobFile file){
-        //允许设置下载文件的存储路径，默认下载文件的目录为：context.getApplicationContext().getCacheDir()+"/bmob/"
-        File saveFile = new File(Environment.getExternalStorageDirectory(), file.getFilename());
-        file.download(saveFile, new DownloadFileListener() {
-
-            @Override
-            public void onStart() {
-               // Toast.makeText(MyCaseHistoryAdapter.this, "开始下载...", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void done(String savePath,BmobException e) {
-                if(e==null){
-                 //   toast("下载成功,保存路径:"+savePath);
-                }else{
-                 //   toast("下载失败："+e.getErrorCode()+","+e.getMessage());
-                }
-            }
-
-            @Override
-            public void onProgress(Integer value, long newworkSpeed) {
-                Log.i("bmob","下载进度："+value+","+newworkSpeed);
-            }
-
-        });
     }
 
     public static class MyViewHolder{

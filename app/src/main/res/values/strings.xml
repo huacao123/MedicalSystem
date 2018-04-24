@@ -40,7 +40,7 @@
     <string name="mainPage_listItem_button_text2">上传中</string>
 
     <!-- filePage -->
-    <string name="filePage_top_text">血糖值</string>
+    <string name="filePage_top_text">我的血糖值</string>
     <string name="filePage_top_text_add">添加血糖值</string>
     <string name="filePage_right_text">添加</string>
     <string name="filePage_tabHost_allText">全部</string>
@@ -48,6 +48,7 @@
     <string name="filePage_tabHost_imageText">图片</string>
     <string name="filePage_tabHost_videoText">视频</string>
     <string name="filePage_tabHost_audioText">音频</string>
+    <string name="case_history_upload_ok">上传成功</string>
 
     <!-- filePage listItem -->
     <string name="filePage_listItem_type">王小花的照片</string>
@@ -56,7 +57,7 @@
     <string name="filePage_listItem_buttonText">查看</string>
     <string name="filePage_listItem_deleteText">删除</string>
 
-    <string name="recordPage_top_text">个人数据</string>
+    <string name="recordPage_top_text">我的数据</string>
     <!-- minePage-->
     <string name="minePage_top_text">个人中心</string>
     <string name="minePage_user_name">姓名</string>
@@ -206,7 +207,7 @@
     <string name="action_about">About</string>
     
     <!-- activity_addcase -->
-    <string name="case_history_add">添加病历</string>
+    <string name="case_history_add">病历录入</string>
     <string name="case_history_title">标题</string>
     <string name="case_history_title_hint">请输入标题</string>
     <string name="case_history_upload">病历上传</string>
@@ -217,7 +218,7 @@
     <string name="case_history_date_hint">请输入日期</string>
 
     <!-- activity_addcasehistory -->
-    <string name="case_history">我的病历</string>
+    <string name="case_history">个人病历库</string>
 
 
 </resources>

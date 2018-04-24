@@ -52,37 +52,42 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
-            android:layout_margin="20dp">
+            android:layout_margin="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="请输入日期"/>
+                android:textSize="18dp"
+                android:text="请输入日期:"/>
 
             <EditText
                 android:id="@+id/et_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="18dp"
                 android:ems="10" />
         </LinearLayout>
 
 
         <LinearLayout
-            android:layout_width="288dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_margin="25dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="请选择时间段" />
+                android:textSize="18dp"
+                android:text="请选择时间段:" />
 
         <RadioGroup
             android:id="@+id/rg_timeSelect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:gravity="center"
             android:orientation="horizontal">
             <RadioButton
@@ -90,11 +95,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="午餐前"/>
+                android:text="空腹血糖"/>
             <RadioButton
                 android:id="@+id/rb_time2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:text="午餐后"/>
         </RadioGroup>
 
@@ -102,24 +108,31 @@
     </LinearLayout>
 
         <LinearLayout
-            android:layout_width="286dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="20dp"
+            android:layout_margin="15dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="血糖值" />
+                android:textSize="18dp"
+                android:text="血糖值:" />
 
             <EditText
                 android:id="@+id/et_boldGlucoseLevel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="18dp"
                 android:ems="10"
                 android:inputType="date" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mmol/l" />
         </LinearLayout>
 
     </LinearLayout>

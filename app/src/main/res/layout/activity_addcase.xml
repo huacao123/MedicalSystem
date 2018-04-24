@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/registerPage_toLeft"
+            android:layout_marginLeft="20dp"
             android:text="@string/case_history_date"
             android:textColor="@color/registerPage_editTextColor"
             android:textSize="@dimen/registerPage_editTextSize" />
@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/registerPage_toLeft"
+                android:layout_marginLeft="20dp"
                 android:text="@string/case_history_title"
                 android:textColor="@color/registerPage_editTextColor"
                 android:textSize="@dimen/registerPage_editTextSize" />
@@ -121,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/registerPage_toLeft"
+                android:layout_marginLeft="20dp"
                 android:text="@string/case_history_upload"
                 android:textColor="@color/registerPage_editTextColor"
                 android:textSize="@dimen/registerPage_editTextSize" />
@@ -131,7 +131,7 @@
                 android:layout_width="100dp"
                 android:layout_height="160dp"
                 android:layout_marginLeft="20dp"
-                android:src="@mipmap/logo_chart" />
+                android:src="@mipmap/logo_case_pic" />
 
             <Button
                 android:id="@+id/bt_upload_ensure"
@@ -159,7 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/registerPage_toLeft"
+                android:layout_marginLeft="20dp"
                 android:text="@string/sickness_describe"
                 android:textColor="@color/registerPage_editTextColor"
                 android:textSize="@dimen/registerPage_editTextSize" />
@@ -169,7 +169,7 @@
                 android:layout_width="207dp"
                 android:layout_height="148dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/registerPage_toLeft"
+                android:layout_marginLeft="20dp"
                 android:background="@drawable/bg_border"
                 android:gravity="top"
                 android:hint="@string/sickness_describe_hint"

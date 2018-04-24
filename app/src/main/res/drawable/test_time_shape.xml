@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:innerRadius="60dp"
+    android:shape="ring"
+    android:thickness="6dp"
+    android:useLevel="false" >
+    <!-- android:innerRadius 内环的半径。android:thickness环的厚度 -->
+    <solid android:color="#2a7ee5" />
+    <!-- 【内环半径+环的厚度】*2+【描边的宽度】=【15+5】*2+【1】=41，因为41>android:layout_width="40dp" ，所以边缘会被切割 -->
+    <stroke
+        android:width="1dp"
+        android:color="#87CEFF" />
+</shape>

@@ -6,18 +6,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="100dp"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="10dp"
+            android:layout_width="20dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="35dp"
             android:orientation="vertical">
 
                 <com.wendy.medicalsystem.widget.CircleImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@mipmap/new_message_notify" />
 
@@ -38,7 +38,8 @@
              android:layout_width="wrap_content"
              android:layout_height="match_parent"
              android:orientation="vertical"
-             android:layout_marginLeft="20dp">
+             android:padding="8dp"
+             android:layout_marginLeft="10dp">
              <LinearLayout
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
@@ -47,6 +48,8 @@
                      android:id="@+id/tv_date"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
+                     android:textSize="16dp"
+                     android:textStyle="bold"
                      android:gravity="center_vertical"
                      android:text="2016-12-20" />
 
@@ -54,6 +57,9 @@
                      android:id="@+id/tv_title"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
+                     android:textSize="18dp"
+                     android:textStyle="bold"
+                     android:layout_marginLeft="15dp"
                      android:gravity="center_vertical"
                      android:text="标题" />
 
@@ -66,14 +72,16 @@
 
                  <ImageView
                      android:id="@+id/iv_case"
-                     android:layout_width="50dp"
-                     android:layout_height="wrap_content"
-                     android:src="@drawable/mess2"/>
+                     android:scaleType="centerInside"
+                     android:layout_width="180dp"
+                     android:layout_height="wrap_content" />
 
                  <TextView
                      android:id="@+id/tv_content"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
+                     android:layout_marginLeft="10dp"
+                     android:textSize="16dp"
                      android:gravity="center_vertical"
                      android:text="内容" />
              </LinearLayout>

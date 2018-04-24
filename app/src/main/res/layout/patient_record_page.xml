@@ -87,7 +87,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_margin="10dp"
-                    android:background="@color/mainPage_listItem_uploadButton_record"
+                    android:background="@color/mainPage_listItem_patientDetails_color"
                     android:elevation="8dp"
                     android:src="@mipmap/logo_content" />
             </LinearLayout>

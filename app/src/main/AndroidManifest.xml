@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppStartupTheme">
         <activity
-            android:name="com.wendy.medicalsystem.medicalapplicition.LoginActivity"
+            android:name="com.wendy.medicalsystem.medicalapplicition.StartupActivity"
             android:theme="@style/AppStartupTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,9 +28,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.wendy.medicalsystem.medicalapplicition.StartupActivity"
+            android:name="com.wendy.medicalsystem.medicalapplicition.LoginActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"></activity>
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name="com.wendy.medicalsystem.medicalapplicition.RegisterActivity"
             android:label="@string/app_name"

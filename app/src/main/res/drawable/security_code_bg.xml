@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- 连框颜色值 -->
+    <item>
+        <shape>
+            <solid android:color="#ff0000" />
+        </shape>
+    </item>
+
+    <item android:top="1dp" android:left="1dp" android:right="1dp" android:bottom="1dp"> <!--设置只有底部有边框-->
+        <shape>
+            <solid android:color="#E2E2E2" />
+        </shape>
+    </item>
+</layer-list>

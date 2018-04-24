@@ -75,7 +75,7 @@ public class MyDataAdapter extends BaseAdapter {
           //  Log.d("wenfang","data = "+data[0]+"-"+data[1]+"-"+data[2]);
             holder.dataSelect.setText(data[0]+"-"+data[1]+"-"+data[2]+"    ");
             holder.timeSelect.setText(mBGValueList.get(position).getTimeSelect()+"    ");
-            holder.boldGlucoseLevelValue.setText(mBGValueList.get(position).getBGlucoseLevelValue());
+            holder.boldGlucoseLevelValue.setText(mBGValueList.get(position).getBGlucoseLevelValue()+"mmol/l");
         }
         return convertView;
     }

@@ -56,10 +56,11 @@ public class AddVerdanaActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //startActivity(new Intent(AddVerdanaActivity.this,ChartActivity.class));
+                tv_Datashow.setEnabled(false);
                 User user = BmobUser.getCurrentUser(User.class);
                 BmobQuery<BloodGlucoseValue> query = new BmobQuery<>();
                 query.addWhereEqualTo("user",new BmobPointer(user));
-                query.setLimit(7);
+                //query.setLimit(7);
                 query.findObjects(new FindListener<BloodGlucoseValue>() {
                     @Override
                     public void done(List<BloodGlucoseValue> list, BmobException e) {
@@ -113,6 +114,7 @@ public class AddVerdanaActivity extends Activity {
     protected void onResume() {
         super.onResume();
         updateData();
+        tv_Datashow.setEnabled(true);
 
     }
 

@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.wendy.medicalsystem.R;
+import com.wendy.medicalsystem.entity.Code;
 import com.wendy.medicalsystem.entity.User;
 import com.wendy.medicalsystem.function.UserInfo;
 import com.wendy.medicalsystem.tools.ExitApplication;
@@ -36,6 +38,10 @@ public class LoginActivity extends Activity {
     private RelativeLayout loginButton;
     private TextView registerButton;
     private TextView forgetPass;
+    private ImageView iv_showCode;
+    private EditText et_phoneCode;
+    //产生的验证码
+    private String realCode;
 
     private final String PREFERENCE_NAME = "userInfo";
     private String userName, passWord;
@@ -62,6 +68,15 @@ public class LoginActivity extends Activity {
         loginButton = (RelativeLayout) this.findViewById(R.id.login_button);
         registerButton = (TextView) this.findViewById(R.id.login_register);
         forgetPass = (TextView) this.findViewById(R.id.login_forget);
+
+        et_phoneCode = (EditText) findViewById(R.id.et_phoneCodes);
+
+        iv_showCode = (ImageView) findViewById(R.id.iv_showCode);
+        //将验证码用图片的形式显示出来
+        iv_showCode.setImageBitmap(Code.getInstance().createBitmap());
+        realCode = Code.getInstance().getCode().toLowerCase();
+        iv_showCode.setOnClickListener(onClickListener);
+
         loginButton.setOnClickListener(onClickListener);
         registerButton.setOnClickListener(onClickListener);
         forgetPass.setOnClickListener(onClickListener);
@@ -98,6 +113,11 @@ public class LoginActivity extends Activity {
             switch (v.getId()) {
                 case R.id.login_button:
                     doLogin();
+                    break;
+                case R.id.iv_showCode:
+                    iv_showCode.setImageBitmap(Code.getInstance().createBitmap());
+                    realCode = Code.getInstance().getCode().toLowerCase();
+//                    Log.v(TAG,"realCode"+realCode);
                     break;
                 case R.id.login_forget:
                     doForget();
@@ -164,7 +184,7 @@ public class LoginActivity extends Activity {
             @Override
             public void done(User user, BmobException e) {
                 if (e == null){
-                    if (dialog != null && dialog.isShowing()) {
+                    if (dialog != null && dialog.isShowing() && et_phoneCode.equals(realCode)) {
                         dialog.dismiss();
                     }
                     Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_SHORT).show();
@@ -195,6 +215,10 @@ public class LoginActivity extends Activity {
             Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
             return false;
         }
+        if (et_phoneCode.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
 
@@ -210,5 +234,17 @@ public class LoginActivity extends Activity {
             finish();
         }*/
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private long exitTime = 0;
+    @Override
+    public void onBackPressed() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            Toast.makeText(LoginActivity.this, "再按一次退出应用", Toast.LENGTH_SHORT)
+                    .show();
+            exitTime = System.currentTimeMillis();
+            return;
+        }
+        ExitApplication.getInstance().exit();
     }
 }

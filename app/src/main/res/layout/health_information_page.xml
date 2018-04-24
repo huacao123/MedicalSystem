@@ -14,8 +14,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="39dp"
-        android:textSize="25dp"
+        android:textSize="22dp"
         android:background="@color/mainPage_top_color"
+        android:textColor="@color/uploadRecord_topTextColor"
         android:gravity="center"
         android:text="健康资讯"
         app:layout_constraintTop_toBottomOf="@+id/banner" />

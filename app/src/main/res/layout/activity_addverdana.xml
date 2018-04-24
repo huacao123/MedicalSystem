@@ -37,7 +37,7 @@
             android:id="@+id/tv_Datashow"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="图表统计>>"
+            android:text="图表分析>>"
             android:textColor="@color/mainPage_searchBox_color"
             android:textSize="@dimen/mainPage_search_textSize"
             android:layout_centerVertical="true"
@@ -53,17 +53,49 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="29dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:text="日期"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="75dp"
+                android:layout_marginRight="50dp"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:text="时间点"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:text="血糖值"/>
+        </LinearLayout>
+
         <ListView
             android:id="@+id/lv_myDataList"
+            android:layout_marginTop="39dp"
+            android:dividerHeight="3dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></ListView>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_addData"
-            android:layout_width="80dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center|end"
-            android:layout_margin="20dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="100dp"
             android:src="@drawable/ic_done"
             app:elevation="8dp"
             tools:layout_editor_absoluteY="487dp" />

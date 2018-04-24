@@ -78,7 +78,7 @@ public class AddDataActivity extends AppCompatActivity implements View.OnClickLi
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case R.id.rb_time1:
-                        timeSelect = "午餐前";
+                        timeSelect = "空腹血糖";
                         break;
                     case R.id.rb_time2:
                         timeSelect = "午餐后";
@@ -100,7 +100,7 @@ public class AddDataActivity extends AppCompatActivity implements View.OnClickLi
                     float value = Float.valueOf(charSequence.toString());
                     if ((value < minBoldGlucoseLevel) || (value > maxBoldGlucoseLevel)){
                         isOutofRange = true;
-                        Toast.makeText(AddDataActivity.this, "输入范围0-15mmol/L", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddDataActivity.this, "您好！血糖值输入范围为0-20mmol/L", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -184,7 +184,7 @@ public class AddDataActivity extends AppCompatActivity implements View.OnClickLi
             return false;
         }*/
         if(isOutofRange){
-            Toast.makeText(AddDataActivity.this, "输入范围0-15mmol/L", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddDataActivity.this, "您好！血糖值输入范围为0-20mmol/L", Toast.LENGTH_SHORT).show();
             isOutofRange = false;
             return false;
         }

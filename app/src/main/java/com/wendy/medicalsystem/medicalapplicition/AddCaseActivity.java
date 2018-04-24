@@ -61,6 +61,8 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
     private String mSicknessDescribe;
     private String mCaseHistoryPictureUrl;
 
+    private boolean isUploadEnsure = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +80,8 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
         tv_case_history_date.setOnClickListener(this);
         iv_case_history_upload.setOnClickListener(this);
         bt_upload_ensure.setOnClickListener(this);
+        iv_sign_check_icon = findViewById(R.id.iv_sign_check_icon);
+        bt_upload_ensure.setEnabled(false);
         ExitApplication.getInstance().addActivity(this);
     }
 
@@ -133,6 +137,9 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
                 }).create().show();
                 break;
             case R.id.iv_case_history_upload:
+                isUploadEnsure = false;
+                iv_sign_check_icon.setImageResource(R.drawable.alert);
+                bt_upload_ensure.setText(R.string.case_history_upload_ensure);
                 bt_upload_ensure.setEnabled(true);
                 outputImage = new File(getExternalCacheDir(),
                         "output_image.jpg");
@@ -161,15 +168,17 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
                     @Override
                     public void done(BmobException e) {
                         if(e==null){
+                            Log.d("wenfang","---UPLOAD_OK---");
                             mCaseHistoryPictureUrl =  bmobFile.getFileUrl();//返回的上传文件的完整地址
+                            bt_upload_ensure.setText(R.string.case_history_upload_ok);
+                            iv_sign_check_icon.setImageResource(R.drawable.sign_check_icon);
+                            isUploadEnsure = true;
                             Toast.makeText(AddCaseActivity.this, "上传文件成功 ", Toast.LENGTH_SHORT).show();
-                            //mHandler.sendEmptyMessage(UPLOAD_OK);
-
                         }else{
                             bt_upload_ensure.setEnabled(true);
+                            iv_sign_check_icon.setImageResource(R.drawable.sign_error_icon);
+                            isUploadEnsure = false;
                             Toast.makeText(AddCaseActivity.this, "上传文件失败 ", Toast.LENGTH_SHORT).show();
-                            //mHandler.sendEmptyMessage(UPLOAD_FAIL);
-
                         }
                     }
 
@@ -177,9 +186,6 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
                     public void onProgress(Integer value) {
                         // 返回的上传进度（百分比）
                         Log.d("wenfang","onProgress"+value);
-                        /*if(value == 100){
-                            mHandler.sendEmptyMessage(UPLOAD_OK);
-                        }*/
                     }
                 });
                 break;
@@ -187,21 +193,34 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    private Handler mHandler = new Handler(){
+   /** private Handler mHandler = new Handler(){
+
+        /*new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                       // mHandler.sendEmptyMessage(UPLOAD_OK);
+                        Message message = new Message();
+                        message.what = UPLOAD_OK;
+                        mHandler.sendMessage(message);
+                    }
+                }).start();
         @Override
         public void handleMessage(Message msg) {
-            super.handleMessage(msg);
+            //super.handleMessage(msg);
+            Log.d("wenfang","handleMessage"+msg.what);
             switch (msg.what){
                 case UPLOAD_OK:
-                    iv_sign_check_icon.setBackground(getResources().getDrawable(R.drawable.sign_check_icon));
+                   // iv_sign_check_icon.setBackground(getResources().getDrawable(R.drawable.sign_check_icon));
+                    iv_sign_check_icon.setImageResource(R.drawable.sign_error_icon);
                     break;
                 case UPLOAD_FAIL:
-                    iv_sign_check_icon.setBackground(getResources().getDrawable(R.drawable.sign_error_icon));
+
+                    //iv_sign_check_icon.setBackground(getResources().getDrawable(R.drawable.sign_error_icon));
                     break;
 
             }
         }
-    };
+    };**/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -223,6 +242,10 @@ public class AddCaseActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private boolean checkData(){
+        if(! isUploadEnsure){
+            Toast.makeText(this, "请上传图片！", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         if(tv_case_history_date.getText().toString().isEmpty()){
             Toast.makeText(this, "请输入日期！", Toast.LENGTH_SHORT).show();
             return false;

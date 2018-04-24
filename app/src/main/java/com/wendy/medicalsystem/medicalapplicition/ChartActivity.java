@@ -52,7 +52,10 @@ import lecho.lib.hellocharts.view.ComboLineColumnChartView;
 public class ChartActivity extends AppCompatActivity {
     private TextView registerPage_cancelButton;
     private ColumnChartView mColumnChartView;
-    List<BloodGlucoseValue> mBloodGlucoseValue;
+    List<BloodGlucoseValue> mBloodGlucoseValue ;
+    List<BloodGlucoseValue> mBloodGlucoseValueBefore = new ArrayList<>();
+    List<BloodGlucoseValue> mBloodGlucoseValueAfter;
+    private int timebBfore =0,timebBforeHigh =0,timebBforeLow =0,timeBeforeNormal =0;
 
     /*========== 数据相关 ==========*/
     private ColumnChartData mColumnChartData;               //柱状图数据
@@ -66,7 +69,7 @@ public class ChartActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_combo_line_column_chart);
         ExitApplication.getInstance().addActivity(this);
 
-        mBloodGlucoseValue = (List<BloodGlucoseValue>) this.getIntent().getSerializableExtra("User");
+        mBloodGlucoseValue = (ArrayList<BloodGlucoseValue>) this.getIntent().getSerializableExtra("User");
 
         Log.d("wenfang","mBloodGlucoseValue:" + mBloodGlucoseValue.size());
 
@@ -82,8 +85,53 @@ public class ChartActivity extends AppCompatActivity {
             }
         });
 
-        if(mBloodGlucoseValue.size() >= 7){
-            for (int i = 0;i < mBloodGlucoseValue.size(); i++) {
+
+
+        for (BloodGlucoseValue bgValue : mBloodGlucoseValue){
+            Double bgLevelValue = Double.parseDouble( bgValue.getBGlucoseLevelValue() );
+            if(bgValue.getTimeSelect().equals("午餐前")){
+                mBloodGlucoseValueBefore.add(timebBfore,bgValue);
+                timebBfore++;
+                if(bgLevelValue < 3.9 ){
+                    timebBforeLow ++;
+                }else if (bgLevelValue > 6.1){
+                    timebBforeHigh ++;
+                }else {
+                    timeBeforeNormal++;
+                }
+            }
+        }
+
+        Log.d("wenfang","timebBfore"+timebBfore);
+
+        TextView tv_time_before = findViewById(R.id.tv_time_before);
+        tv_time_before.setText(timebBfore+" ");
+        TextView tv_time_before_low = findViewById(R.id.tv_time_before_low);
+        tv_time_before_low.setText(timebBforeLow+" ");
+        TextView tv_time_before_high = findViewById(R.id.tv_time_before_high);
+        tv_time_before_high.setText(timebBforeHigh+" ");
+        TextView tv_time_before_normal = findViewById(R.id.tv_time_before_normal);
+        tv_time_before_normal.setText(timeBeforeNormal+" ");
+
+
+        if(timebBfore >= 7){
+            for (int i = 0;i < 7; i++) {
+                xValues[i] = mBloodGlucoseValueBefore.get(i).getYear() + "-" + mBloodGlucoseValueBefore.get(i).getMouth() + "-" + mBloodGlucoseValueBefore.get(i).getDay();
+                yValues[i] = mBloodGlucoseValueBefore.get(i).getBGlucoseLevelValue();
+                Log.d("wenfang", "xValues[i] : " + xValues[i] + "; yValues[i] : " + yValues[i]);
+            }
+            mColumnChartView.setVisibility(View.VISIBLE);
+            ll_coordText.setVisibility(View.VISIBLE);
+            tv_noChart.setVisibility(View.GONE);
+            initView();
+        }else {
+            mColumnChartView.setVisibility(View.GONE);
+            ll_coordText.setVisibility(View.GONE);
+            tv_noChart.setVisibility(View.VISIBLE);
+        }
+
+/*        if(mBloodGlucoseValue.size() >= 7){
+            for (int i = 0;i < 7; i++) {
                 xValues[i] = mBloodGlucoseValue.get(i).getYear() + "-" + mBloodGlucoseValue.get(i).getMouth() + "-" + mBloodGlucoseValue.get(i).getDay();
                 yValues[i] = mBloodGlucoseValue.get(i).getBGlucoseLevelValue();
                 Log.d("wenfang", "xValues[i] : " + xValues[i] + "; yValues[i] : " + yValues[i]);
@@ -96,7 +144,7 @@ public class ChartActivity extends AppCompatActivity {
             mColumnChartView.setVisibility(View.GONE);
             ll_coordText.setVisibility(View.GONE);
             tv_noChart.setVisibility(View.VISIBLE);
-        }
+        }*/
 
 
 
